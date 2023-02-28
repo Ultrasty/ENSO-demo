@@ -1,14 +1,13 @@
 {
   "pages":[
-    
-    "pages/index/index",
+    "pages/avatar/index",
     "pages/logs/logs",
     "pages/line/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "同济大学ENSO预测与分析",
     "navigationBarTextStyle":"black"
   },
   "sitemapLocation": "sitemap.json"
