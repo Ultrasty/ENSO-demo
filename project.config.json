@@ -37,7 +37,10 @@
             "ignore": [],
             "disablePlugins": [],
             "outputPath": ""
-        }
+        },
+        "useCompilerPlugins": [
+            "sass"
+        ]
     },
     "compileType": "miniprogram",
     "libVersion": "2.19.4",

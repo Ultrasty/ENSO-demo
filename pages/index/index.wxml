@@ -1,0 +1,63 @@
+<view wx:if="{{value=='predict'}}">
+
+    <t-navbar style="--td-navbar-padding-top:0" class="custom-navbar" title="ENSO集合预测结果查询" t-class-title="nav-title" />
+
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    
+</view>
+
+<view wx:if="{{value=='analyse'}}">
+    
+    <t-navbar style="--td-navbar-padding-top:0;" class="custom-navbar" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
+
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+    <view>666666</view>
+</view>
+
+<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+    <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}"> {{item.label}} </t-tab-bar-item>
+</t-tab-bar>

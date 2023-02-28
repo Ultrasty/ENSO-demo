@@ -1,14 +1,23 @@
 {
-  "pages":[
-    "pages/avatar/index",
-    "pages/logs/logs",
-    "pages/line/index"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "同济大学ENSO预测与分析",
-    "navigationBarTextStyle":"black"
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/line/index"
+    ],
+    "usingComponents": {
+        "t-tag": "tdesign-miniprogram/tag/tag",
+        "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
+        "t-tab-bar-item": "tdesign-miniprogram/tab-bar-item/tab-bar-item",
+        "t-button": "tdesign-miniprogram/button/button",
+        "t-navbar": "tdesign-miniprogram/navbar/navbar",
+        "t-collapse": "tdesign-miniprogram/collapse/collapse",
+        "t-collapse-panel": "tdesign-miniprogram/collapse-panel/collapse-panel"
+    },
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "同济大学ENSO预测与分析",
+        "navigationBarTextStyle": "black"
+    },
+    "sitemapLocation": "sitemap.json"
 }
