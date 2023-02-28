@@ -1,6 +1,6 @@
 <view wx:if="{{value=='predict'}}">
 
-    <t-navbar style="--td-navbar-padding-top:0" class="custom-navbar" title="ENSO集合预测结果查询" t-class-title="nav-title" />
+    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px" class="custom-navbar" title="ENSO集合预测结果查询" t-class-title="nav-title" />
 
     <view>666666</view>
     <view>666666</view>
@@ -42,20 +42,35 @@
     <view>666666</view>
     <view>666666</view>
     <view>666666</view>
-    
+
 </view>
 
 <view wx:if="{{value=='analyse'}}">
-    
-    <t-navbar style="--td-navbar-padding-top:0;" class="custom-navbar" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
 
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
+    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px" class="custom-navbar" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
+
+    <view class="wrapper">
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+    </view>
 </view>
 
 <t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
