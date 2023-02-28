@@ -2,46 +2,7 @@
 
     <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px" class="custom-navbar" title="ENSO集合预测结果查询" t-class-title="nav-title" />
 
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
-    <view>666666</view>
+    <view style="height: 50rpx;width: 300rpx;background-color: red;">起报时间：</view>
 
 </view>
 
