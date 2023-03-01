@@ -13,7 +13,8 @@
         "t-collapse": "tdesign-miniprogram/collapse/collapse",
         "t-collapse-panel": "tdesign-miniprogram/collapse-panel/collapse-panel",
         "t-cell": "tdesign-miniprogram/cell/cell",
-        "t-date-time-picker": "tdesign-miniprogram/date-time-picker/date-time-picker"
+        "t-date-time-picker": "tdesign-miniprogram/date-time-picker/date-time-picker",
+        "ec-canvas": "./ec-canvas/ec-canvas"
     },
     "window": {
         "backgroundTextStyle": "light",
