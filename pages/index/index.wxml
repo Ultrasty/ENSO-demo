@@ -1,14 +1,22 @@
 <view wx:if="{{value=='predict'}}">
 
-    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px" class="custom-navbar" title="ENSO集合预测结果查询" t-class-title="nav-title" />
+    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="ENSO集合预测结果查询" t-class-title="nav-title" />
 
-    <view style="height: 50rpx;width: 300rpx;background-color: red;">起报时间：</view>
+    <view class="subtitle">起报时间：</view>
+    <t-cell title="选择日期" hover note="{{monthText}}" arrow data-mode="month" bindtap="showPicker" t-class="pannel-item" />
+
+    <!-- 年月 -->
+    <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
+
+    <view class="subtitle">预测结果：</view>
+
+    <view class="subtitle">结果描述：</view>
 
 </view>
 
 <view wx:if="{{value=='analyse'}}">
 
-    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px" class="custom-navbar" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
+    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
 
     <view class="wrapper">
         <t-collapse value="{{activeValues}}" bind:change="handleChange">

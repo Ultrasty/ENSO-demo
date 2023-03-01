@@ -11,7 +11,9 @@
         "t-button": "tdesign-miniprogram/button/button",
         "t-navbar": "tdesign-miniprogram/navbar/navbar",
         "t-collapse": "tdesign-miniprogram/collapse/collapse",
-        "t-collapse-panel": "tdesign-miniprogram/collapse-panel/collapse-panel"
+        "t-collapse-panel": "tdesign-miniprogram/collapse-panel/collapse-panel",
+        "t-cell": "tdesign-miniprogram/cell/cell",
+        "t-date-time-picker": "tdesign-miniprogram/date-time-picker/date-time-picker"
     },
     "window": {
         "backgroundTextStyle": "light",
