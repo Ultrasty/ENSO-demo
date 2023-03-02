@@ -39,6 +39,7 @@ Component({
     },
 
     data: {
+        isPC: wx.getSystemInfoSync().platform == "devtools",
         start: '2022-01',
         end: '2022-12',
         mode: '',
