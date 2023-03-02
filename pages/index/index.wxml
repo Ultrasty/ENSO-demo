@@ -1,60 +1,57 @@
-<view style="display: flex;flex-direction: column;height: 100vh;">
-    <view style="overflow: scroll;">
-        <view wx:if="{{value=='predict'}}">
+<view wx:if="{{value=='predict'}}">
+    
+    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="ENSO集合预测结果查询" t-class-title="nav-title" />
 
-            <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="ENSO集合预测结果查询" t-class-title="nav-title" />
+    <view class="subtitle">起报时间：</view>
+    
+    <t-cell title="选择日期" hover note="{{monthText}}" arrow data-mode="month" bindtap="showPicker" t-class="pannel-item" />
 
-            <view class="subtitle">起报时间：</view>
-            <t-cell title="选择日期" hover note="{{monthText}}" arrow data-mode="month" bindtap="showPicker" t-class="pannel-item" />
+    <!-- 年月 -->
+    <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
 
-            <!-- 年月 -->
-            <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
-
-            <view class="subtitle">预测结果：</view>
-            <view>
-                <view class="container">
-                    <ec-canvas force-use-old-canvas="{{isPC}}"  id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
-                </view>
-            </view>
-            <view class="subtitle">结果描述：</view>
-
-
-            <view style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
-            <view style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view><view style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view><view style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
-        
+    <view class="subtitle">预测结果：</view>
+    <view>
+        <view class="container">
+            <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
         </view>
-
-        <view wx:if="{{value=='analyse'}}">
-
-            <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
-
-            <view class="wrapper">
-                <t-collapse value="{{activeValues}}" bind:change="handleChange">
-                    <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
-                        此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
-                    </t-collapse-panel>
-                </t-collapse>
-                <t-collapse value="{{activeValues}}" bind:change="handleChange">
-                    <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
-                        此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
-                    </t-collapse-panel>
-                </t-collapse>
-                <t-collapse value="{{activeValues}}" bind:change="handleChange">
-                    <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
-                        此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
-                    </t-collapse-panel>
-                </t-collapse>
-                <t-collapse value="{{activeValues}}" bind:change="handleChange">
-                    <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
-                        此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
-                    </t-collapse-panel>
-                </t-collapse>
-            </view>
-        </view>
-
     </view>
-    <view style="flex:auto;"></view>
-    <t-tab-bar style="position: unset;" value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
-        <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}"> {{item.label}} </t-tab-bar-item>
-    </t-tab-bar>
+    <view class="subtitle">结果描述：</view>
+
+
+    <view style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
+
+
 </view>
+
+<view wx:if="{{value=='analyse'}}">
+
+    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
+
+    <view class="wrapper">
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+        <t-collapse value="{{activeValues}}" bind:change="handleChange">
+            <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
+                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+            </t-collapse-panel>
+        </t-collapse>
+    </view>
+</view>
+
+
+<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+    <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}"> {{item.label}} </t-tab-bar-item>
+</t-tab-bar>

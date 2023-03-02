@@ -11,27 +11,35 @@ function initChart(canvas, width, height, dpr) {
     canvas.setChart(chart);
 
     var option = {
+        grid:{
+            y:35
+        },
         dataZoom: [
-            {
-                start: 0,
-                end: 50
-            },
-            {
-                type: 'inside',
-                start: 0,
-                end: 50
-            }
+            // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
+            // {
+            //     start: 0,
+            //     end: 50,
+            //     filterMode: 'none'
+            // },
+            // {
+            //     type: 'inside',
+            //     start: 0,
+            //     end: 50
+            // }
         ],
         title: {
-            text: '测试下面legend的红色区域不应被裁剪',
-            left: 'center'
+            text: 'Niño 3.4 Forecast Results',
+            left: 'center',
+            textStyle: {
+                fontSize:12
+            }
         },
         xAxis: {
             data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
         },
         yAxis: {
-            min:-3,
-            max:3,
+            // min:-3,
+            // max:3,
             splitLine: {
                 lineStyle: {
                   type: 'dashed'
@@ -40,7 +48,7 @@ function initChart(canvas, width, height, dpr) {
         },
         legend: {
             data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC','EnsembleForecast'],
-            top: 40
+            bottom:0
         },
         series: [{
                 name:'ENSO-Cross',
