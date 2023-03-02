@@ -11,9 +11,9 @@
             <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
 
             <view class="subtitle">预测结果：</view>
-            <view style="position: relative;">
+            <view>
                 <view class="container">
-                    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
+                    <ec-canvas force-use-old-canvas="true"  id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}"></ec-canvas>
                 </view>
             </view>
             <view class="subtitle">结果描述：</view>
