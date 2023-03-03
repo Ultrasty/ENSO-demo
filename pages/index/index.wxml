@@ -20,7 +20,7 @@
         </view>
     </t-popup>
 
-    <view class="subtitle">起报时间：</view>
+    <view class="subtitle">起报时间：{{month}}</view>
 
     <!-- 日期选择器 -->
     <t-cell title="选择日期" hover note="{{monthText}}" arrow data-mode="month" bindtap="showPicker" t-class="pannel-item" />

@@ -34,6 +34,7 @@ Component({
         start: '2022-01',
         end: '2022-12',
         mode: '',
+        month:'2022-10',
         second: '10:00:00',
         minute: '23:59',
         //Collapse 折叠面板 展开的栏的列表
