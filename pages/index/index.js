@@ -10,7 +10,7 @@ Component({
 
     //不同组件使用的data都混到一起了
     data: {
-        chartDataMain:{
+        chartDataMain: {
             xAxis: {
                 data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
             },
@@ -18,24 +18,24 @@ Component({
                 data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
             },
             series: [{
-                name: 'ENSO-Cross',
-                data: [-0.85, -0.74, -0.60, -0.46, -0.30, -0.19, -0.14, 0.19, 0.59, 0.88, 1.11, 1.27, 1.34, 1.45, 1.55, 1.57, 1.43],
-                type: 'line',
-            },
-            {
-                name: 'ENSO-ASC',
-                data: [-0.98, -0.67, -0.74, -0.93, -0.35, 0.33, 0.42, 0.48, 0.19, -0.25, -0.49, -0.71, -0.35, 0.05, 0.33, 1.41, 1.28],
-                type: 'line',
-            }, {
-                name: 'ENSO-MC',
-                data: [-1.17, -0.96, -0.95, -0.96, -0.61, -0.23, -0.20, -0.10, -0.23, -0.28, -0.28, -0.28, -0.06, 0.20, 0.37, 0.93, 0.80],
-                type: 'line',
-            }, {
-                name: 'EnsembleForecast',
-                data: [-0.92, -0.70, -0.67, -0.69, -0.33, 0.07, 0.14, 0.34, 0.39, 0.32, 0.31, 0.28, 0.49, 0.75, 0.94, 1.49, 1.36],
-                type: 'line',
-            }
-        ]
+                    name: 'ENSO-Cross',
+                    data: [-0.85, -0.74, -0.60, -0.46, -0.30, -0.19, -0.14, 0.19, 0.59, 0.88, 1.11, 1.27, 1.34, 1.45, 1.55, 1.57, 1.43],
+                    type: 'line',
+                },
+                {
+                    name: 'ENSO-ASC',
+                    data: [-0.98, -0.67, -0.74, -0.93, -0.35, 0.33, 0.42, 0.48, 0.19, -0.25, -0.49, -0.71, -0.35, 0.05, 0.33, 1.41, 1.28],
+                    type: 'line',
+                }, {
+                    name: 'ENSO-MC',
+                    data: [-1.17, -0.96, -0.95, -0.96, -0.61, -0.23, -0.20, -0.10, -0.23, -0.28, -0.28, -0.28, -0.06, 0.20, 0.37, 0.93, 0.80],
+                    type: 'line',
+                }, {
+                    name: 'EnsembleForecast',
+                    data: [-0.92, -0.70, -0.67, -0.69, -0.33, 0.07, 0.14, 0.34, 0.39, 0.32, 0.31, 0.28, 0.49, 0.75, 0.94, 1.49, 1.36],
+                    type: 'line',
+                }
+            ]
         },
         cur: {},
         position: [{
@@ -181,7 +181,15 @@ Component({
             });
         },
         test() {
-            const merged = mergeDeep({ a: { a: 1 } },{ a: { a: 23 } });
+            const merged = mergeDeep({
+                a: {
+                    a: 1
+                }
+            }, {
+                a: {
+                    a: 23
+                }
+            });
             console.log(merged);
         }
     },
@@ -230,8 +238,8 @@ function initChartMain(canvas, width, height, dpr) {
         },
     };
 
-    option = mergeDeep(option,getCurrentPages()[0].data.chartDataMain);
-    option.title.text='Niño 3.4 Forecast Results '+getCurrentPages()[0].data.month;
+    option = mergeDeep(option, getCurrentPages()[0].data.chartDataMain);
+    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages()[0].data.month;
     delete(option.yAxis.data);
 
     chartMain.setOption(option);
@@ -240,7 +248,7 @@ function initChartMain(canvas, width, height, dpr) {
 
 
 function initChartRotated(canvas, width, height, dpr) {
-    
+
     chartRotated = echarts.init(canvas, null, {
         width: width,
         height: height,
@@ -284,10 +292,10 @@ function initChartRotated(canvas, width, height, dpr) {
         }
     };
 
-    option = mergeDeep(option,getCurrentPages()[0].data.chartDataMain);
-    option.title.text='Niño 3.4 Forecast Results '+getCurrentPages()[0].data.month;
+    option = mergeDeep(option, getCurrentPages()[0].data.chartDataMain);
+    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages()[0].data.month;
     delete(option.xAxis.data);
-    
+
 
     chartRotated.setOption(option);
     return chartRotated;
