@@ -4,8 +4,11 @@
     <!-- 这个 --td-navbar-padding-top:0 非得要写在内联样式里才生效，不能放到index.scss里去，无语了 -->
     <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="ENSO集合预测结果查询" t-class-title="nav-title" />
 
-    <!-- popup的图表 -->
+    <!-- popup的图表 chartRotated -->
+    <!-- 没法直接把view 元素旋转90°来实现图表旋转，echarts图表始终是一个方向，只能改echarts 配置项来实现 无语了 -->
+    <!-- 参考链接 http://www.sheep11.com/echarts/e-xQ-p7W_GpY -->
     <!-- 这popup的duration属性不生效啊，无语 -->
+    <!-- 为什要popup 而不使用echarts的滑动图表的能力呢，因为会闪退，echarts占用内存过大被微信kill掉 -->
     <t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="center">
         <view class="block">
             <t-icon t-class="close-btn" name="close-circle" size="32" color="grey" bind:tap="onClose" />
@@ -26,6 +29,7 @@
     <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
 
     <view class="subtitle">预测结果：</view>
+    <!-- 预测结果 chartMain -->
     <view>
         <view bind:tap="handlePopup" class="chartMain">
             <ec-canvas id="chartMain" canvas-id="chartMain" ec="{{ ecMain }}"></ec-canvas>

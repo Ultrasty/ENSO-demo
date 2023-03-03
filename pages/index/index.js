@@ -5,6 +5,7 @@ Component({
         styleIsolation: 'apply-shared',
     },
 
+    //不同组件使用的data都混到一起了
     data: {
         cur: {},
         position: [{
@@ -35,7 +36,7 @@ Component({
         mode: '',
         second: '10:00:00',
         minute: '23:59',
-        //展开的栏的列表
+        //Collapse 折叠面板 展开的栏的列表
         activeValues: [],
         //默认页 predict / analyse
         value: 'predict',
@@ -59,17 +60,19 @@ Component({
     },
 
     methods: {
+        // 底部标签栏
         onChange(e) {
             this.setData({
                 value: e.detail.value,
             });
         },
-        //用户分析页的Collapse 折叠面板
+        //用户分析页的Collapse 折叠面板 展开项列表
         handleChange(e) {
             this.setData({
                 activeValues: e.detail.value,
             });
         },
+        //日期选择器
         showPicker(e) {
             const {
                 mode
@@ -79,6 +82,7 @@ Component({
                 [`${mode}Visible`]: true,
             });
         },
+        //日期选择器
         hidePicker() {
             const {
                 mode
@@ -87,6 +91,7 @@ Component({
                 [`${mode}Visible`]: false,
             });
         },
+        //日期选择器
         onConfirm(e) {
             const {
                 value
@@ -104,10 +109,11 @@ Component({
 
             this.hidePicker();
         },
-
+        //日期选择器
         onColumnChange(e) {
             console.log('pick', e.detail.value);
         },
+        //popup
         handlePopup(e) {
             const {
                 item
@@ -123,43 +129,43 @@ Component({
                 },
             );
             
+            //懒加载，保证绘图的时候，canvas的大小是正确的
+            //设300是因为popup的动画时间是240
             setTimeout(()=>{
                 this.ecComponent = this.selectComponent('#chartRotated');
                 this.ecComponent.init(initChartRotated);
             },300)
             
         },
+        //popup
         onVisibleChange(e) {
             this.setData({
                 visible: e.detail.visible,
             });
         },
+        //popup
         onClose() {
             this.setData({
                 visible: false,
             });
-        },
-        test(){
-            var options = chart.getOption();
-            chart.clear();
-            chart.setOption(options);
         }
     },
 });
 
 import * as echarts from '../../ec-canvas/echarts';
 
-let chart = null;
+//保存图表实例
+let chartMain = null;
 let chartRotated = null;
 
 function initChartMain(canvas, width, height, dpr) {
     
-    chart = echarts.init(canvas, null, {
+    chartMain = echarts.init(canvas, null, {
         width: width,
         height: height,
         devicePixelRatio: dpr // 像素
     });
-    canvas.setChart(chart);
+    canvas.setChart(chartMain);
 
     var option = {
         grid:{
@@ -180,8 +186,6 @@ function initChartMain(canvas, width, height, dpr) {
             data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
         },
         yAxis: {
-            // min:-3,
-            // max:3,
             splitLine: {
                 lineStyle: {
                   type: 'dashed'
@@ -212,8 +216,8 @@ function initChartMain(canvas, width, height, dpr) {
             }
         ]
     };
-    chart.setOption(option);
-    return chart;
+    chartMain.setOption(option);
+    return chartMain;
 }
 
 
