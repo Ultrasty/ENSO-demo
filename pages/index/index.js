@@ -1,11 +1,11 @@
 
 Component({
+    
     options: {
         styleIsolation: 'apply-shared',
     },
 
     data: {
-        // visible:true,
         cur: {},
         position: [{
                 value: 'top',
@@ -28,13 +28,16 @@ Component({
                 text: '右侧弹出'
             },
         ],
+        //PC使用canvas 2d会导致渲染层级错误，但移动端正常
         isPC: wx.getSystemInfoSync().platform == "devtools",
         start: '2022-01',
         end: '2022-12',
         mode: '',
         second: '10:00:00',
         minute: '23:59',
+        //展开的栏的列表
         activeValues: [],
+        //默认页 predict / analyse
         value: 'predict',
         list: [{
                 value: 'predict',
@@ -45,9 +48,11 @@ Component({
                 label: '分析'
             }
         ],
-        ec: {
-            onInit: initChart
+        //预测 主图
+        ecMain: {
+            onInit: initChartMain
         },
+        //预测 放大旋转图
         ecRotated: {
             lazyLoad: true
         }
@@ -59,6 +64,7 @@ Component({
                 value: e.detail.value,
             });
         },
+        //用户分析页的Collapse 折叠面板
         handleChange(e) {
             this.setData({
                 activeValues: e.detail.value,
@@ -118,7 +124,7 @@ Component({
             );
             
             setTimeout(()=>{
-                this.ecComponent = this.selectComponent('#mychart-dom-bar2');
+                this.ecComponent = this.selectComponent('#chartRotated');
                 this.ecComponent.init(initChartRotated);
             },300)
             
@@ -129,10 +135,6 @@ Component({
             });
         },
         onClose() {
-            
-            // var options = chartRotated.getOption();
-            // chartRotated.clear();
-            // chartRotated.setOption(options);
             this.setData({
                 visible: false,
             });
@@ -150,7 +152,7 @@ import * as echarts from '../../ec-canvas/echarts';
 let chart = null;
 let chartRotated = null;
 
-function initChart(canvas, width, height, dpr) {
+function initChartMain(canvas, width, height, dpr) {
     
     chart = echarts.init(canvas, null, {
         width: width,
@@ -161,20 +163,11 @@ function initChart(canvas, width, height, dpr) {
 
     var option = {
         grid:{
+            //控制margin
             y:35
         },
         dataZoom: [
             // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
-            // {
-            //     start: 0,
-            //     end: 50,
-            //     filterMode: 'none'
-            // },
-            // {
-            //     type: 'inside',
-            //     start: 0,
-            //     end: 50
-            // }
         ],
         title: {
             text: 'Niño 3.4 Forecast Results',
@@ -263,6 +256,7 @@ function initChartRotated(canvas, width, height, dpr) {
                 }
             }
         },
+        //echarts图例的文字没法旋转，只能这样了
         legend: {
             data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC','EnsembleForecast'],
             bottom:0
