@@ -14,7 +14,9 @@
         "t-collapse-panel": "tdesign-miniprogram/collapse-panel/collapse-panel",
         "t-cell": "tdesign-miniprogram/cell/cell",
         "t-date-time-picker": "tdesign-miniprogram/date-time-picker/date-time-picker",
-        "ec-canvas": "./ec-canvas/ec-canvas"
+        "ec-canvas": "./ec-canvas/ec-canvas",
+        "t-popup": "tdesign-miniprogram/popup/popup",
+        "t-icon": "tdesign-miniprogram/icon/icon"
     },
     "window": {
         "backgroundTextStyle": "light",
