@@ -1,8 +1,6 @@
 {
     "pages": [
-        "pages/index/index",
-        "pages/logs/logs",
-        "pages/line/index"
+        "pages/index/index"
     ],
     "usingComponents": {
         "t-tag": "tdesign-miniprogram/tag/tag",

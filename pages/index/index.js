@@ -1,6 +1,9 @@
+import {
+    mergeDeep
+} from '../../utils/util';
+
 
 Component({
-    
     options: {
         styleIsolation: 'apply-shared',
     },
@@ -34,7 +37,7 @@ Component({
         start: '2022-01',
         end: '2022-12',
         mode: '',
-        month:'2022-10',
+        month: '2022-10',
         second: '10:00:00',
         minute: '23:59',
         //Collapse 折叠面板 展开的栏的列表
@@ -129,14 +132,14 @@ Component({
                     });
                 },
             );
-            
+
             //懒加载，保证绘图的时候，canvas的大小是正确的
             //设300是因为popup的动画时间是240
-            setTimeout(()=>{
+            setTimeout(() => {
                 this.ecComponent = this.selectComponent('#chartRotated');
                 this.ecComponent.init(initChartRotated);
-            },300)
-            
+            }, 300)
+
         },
         //popup
         onVisibleChange(e) {
@@ -149,6 +152,10 @@ Component({
             this.setData({
                 visible: false,
             });
+        },
+        test() {
+            const merged = mergeDeep({ a: { a: 1 } },{ a: { a: 23 } });
+            console.log(merged);
         }
     },
 });
@@ -160,7 +167,7 @@ let chartMain = null;
 let chartRotated = null;
 
 function initChartMain(canvas, width, height, dpr) {
-    
+
     chartMain = echarts.init(canvas, null, {
         width: width,
         height: height,
@@ -169,9 +176,9 @@ function initChartMain(canvas, width, height, dpr) {
     canvas.setChart(chartMain);
 
     var option = {
-        grid:{
+        grid: {
             //控制margin
-            y:35
+            y: 35
         },
         dataZoom: [
             // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
@@ -180,7 +187,7 @@ function initChartMain(canvas, width, height, dpr) {
             text: 'Niño 3.4 Forecast Results',
             left: 'center',
             textStyle: {
-                fontSize:12
+                fontSize: 12
             }
         },
         xAxis: {
@@ -189,29 +196,29 @@ function initChartMain(canvas, width, height, dpr) {
         yAxis: {
             splitLine: {
                 lineStyle: {
-                  type: 'dashed'
+                    type: 'dashed'
                 }
             }
         },
         legend: {
-            data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC','EnsembleForecast'],
-            bottom:0
+            data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
+            bottom: 0
         },
         series: [{
-                name:'ENSO-Cross',
+                name: 'ENSO-Cross',
                 data: [-0.85, -0.74, -0.60, -0.46, -0.30, -0.19, -0.14, 0.19, 0.59, 0.88, 1.11, 1.27, 1.34, 1.45, 1.55, 1.57, 1.43],
                 type: 'line',
             },
             {
-                name:'ENSO-ASC',
+                name: 'ENSO-ASC',
                 data: [-0.98, -0.67, -0.74, -0.93, -0.35, 0.33, 0.42, 0.48, 0.19, -0.25, -0.49, -0.71, -0.35, 0.05, 0.33, 1.41, 1.28],
                 type: 'line',
             }, {
-                name:'ENSO-MC',
+                name: 'ENSO-MC',
                 data: [-1.17, -0.96, -0.95, -0.96, -0.61, -0.23, -0.20, -0.10, -0.23, -0.28, -0.28, -0.28, -0.06, 0.20, 0.37, 0.93, 0.80],
                 type: 'line',
             }, {
-                name:'EnsembleForecast',
+                name: 'EnsembleForecast',
                 data: [-0.92, -0.70, -0.67, -0.69, -0.33, 0.07, 0.14, 0.34, 0.39, 0.32, 0.31, 0.28, 0.49, 0.75, 0.94, 1.49, 1.36],
                 type: 'line',
             }
@@ -231,56 +238,56 @@ function initChartRotated(canvas, width, height, dpr) {
     canvas.setChart(chartRotated);
 
     var option = {
-        grid:{
+        grid: {
             // y:35
         },
         title: {
             text: 'Niño 3.4 Forecast Results',
             left: 'center',
             textStyle: {
-                fontSize:12
+                fontSize: 12
             }
         },
         yAxis: {
-            axisLabel :{
-                rotate : -90
+            axisLabel: {
+                rotate: -90
             },
-            inverse :'true',
+            inverse: 'true',
             data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
         },
         xAxis: {
             // min:-3,
             // max:3,
-            axisLabel :{  //坐标轴刻度标签的相关设置。
-                rotate : 90 //刻度标签旋转的角度，
+            axisLabel: { //坐标轴刻度标签的相关设置。
+                rotate: 90 //刻度标签旋转的角度，
             },
-            position :'top',
+            position: 'top',
             splitLine: {
                 lineStyle: {
-                  type: 'dashed'
+                    type: 'dashed'
                 }
             }
         },
         //echarts图例的文字没法旋转，只能这样了
         legend: {
-            data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC','EnsembleForecast'],
-            bottom:0
+            data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
+            bottom: 0
         },
         series: [{
-                name:'ENSO-Cross',
+                name: 'ENSO-Cross',
                 data: [-0.85, -0.74, -0.60, -0.46, -0.30, -0.19, -0.14, 0.19, 0.59, 0.88, 1.11, 1.27, 1.34, 1.45, 1.55, 1.57, 1.43],
                 type: 'line',
             },
             {
-                name:'ENSO-ASC',
+                name: 'ENSO-ASC',
                 data: [-0.98, -0.67, -0.74, -0.93, -0.35, 0.33, 0.42, 0.48, 0.19, -0.25, -0.49, -0.71, -0.35, 0.05, 0.33, 1.41, 1.28],
                 type: 'line',
             }, {
-                name:'ENSO-MC',
+                name: 'ENSO-MC',
                 data: [-1.17, -0.96, -0.95, -0.96, -0.61, -0.23, -0.20, -0.10, -0.23, -0.28, -0.28, -0.28, -0.06, 0.20, 0.37, 0.93, 0.80],
                 type: 'line',
             }, {
-                name:'EnsembleForecast',
+                name: 'EnsembleForecast',
                 data: [-0.92, -0.70, -0.67, -0.69, -0.33, 0.07, 0.14, 0.34, 0.39, 0.32, 0.31, 0.28, 0.49, 0.75, 0.94, 1.49, 1.36],
                 type: 'line',
             }
