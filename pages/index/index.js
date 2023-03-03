@@ -120,8 +120,7 @@ Component({
             setTimeout(()=>{
                 this.ecComponent = this.selectComponent('#mychart-dom-bar2');
                 this.ecComponent.init(initChartRotated);
-            },1000)
-            
+            },300)
             
         },
         onVisibleChange(e) {
@@ -152,6 +151,7 @@ let chart = null;
 let chartRotated = null;
 
 function initChart(canvas, width, height, dpr) {
+    
     chart = echarts.init(canvas, null, {
         width: width,
         height: height,
