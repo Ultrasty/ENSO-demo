@@ -139,6 +139,11 @@ Component({
             });
 
             this.hidePicker();
+
+            let option = chartMain.getOption();
+            option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
+            chartMain.clear();
+            chartMain.setOption(option)
         },
         //日期选择器
         onColumnChange(e) {
@@ -166,6 +171,28 @@ Component({
                 this.ecComponent = this.selectComponent('#chartRotated');
                 this.ecComponent.init(initChartRotated);
             }, 300)
+
+            let that= this;
+            wx.request({
+                // url: 'http://192.168.50.122:8080/enso/findByYearAndMonth?year=2022&month=10',
+                url:'http://httpbin.org/get',
+                dataType: 'json',
+                success(res) {
+                  console.log(res.data)
+                  wx.showToast({
+                    title: JSON.stringify(res.data),
+                    icon: 'success',
+                    duration: 2000
+                  })
+                },
+                fail(res){
+                    wx.showToast({
+                        title: '失败',
+                        icon: 'success',
+                        duration: 2000
+                    })
+                }
+            })
 
         },
         //popup
@@ -219,7 +246,6 @@ function initChartMain(canvas, width, height, dpr) {
             // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
         ],
         title: {
-            text: 'Niño 3.4 Forecast Results',
             left: 'center',
             textStyle: {
                 fontSize: 12
