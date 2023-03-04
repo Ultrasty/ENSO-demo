@@ -53,22 +53,22 @@
     <view class="wrapper">
         <t-collapse value="{{activeValues}}" bind:change="handleChange">
             <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
-                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+                暂无数据
             </t-collapse-panel>
         </t-collapse>
         <t-collapse value="{{activeValues}}" bind:change="handleChange">
             <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
-                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+                暂无数据
             </t-collapse-panel>
         </t-collapse>
         <t-collapse value="{{activeValues}}" bind:change="handleChange">
             <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
-                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+                暂无数据
             </t-collapse-panel>
         </t-collapse>
         <t-collapse value="{{activeValues}}" bind:change="handleChange">
             <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
-                此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容此处可自定义内容
+                暂无数据
             </t-collapse-panel>
         </t-collapse>
     </view>
