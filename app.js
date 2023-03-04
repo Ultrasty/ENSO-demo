@@ -1,6 +1,6 @@
 // app.js
 
-var Mock = require("./utils/mock.mp.js"); 
+var Mock = require("./utils/WxMock.js"); 
 
 Mock.mock('https://xxxtest.com/users',{
     "code":200,
