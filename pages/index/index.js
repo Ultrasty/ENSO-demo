@@ -175,10 +175,10 @@ Component({
             let that= this;
             wx.request({
                 // url: 'http://192.168.50.122:8080/enso/findByYearAndMonth?year=2022&month=10',
-                url:'http://httpbin.org/get',
-                dataType: 'json',
+                url:'https://xxxtest.com/users',
+                // dataType: 'json',
                 success(res) {
-                  console.log(res.data)
+                  console.log('https://xxxtest.com/users', res)
                   wx.showToast({
                     title: JSON.stringify(res.data),
                     icon: 'success',
