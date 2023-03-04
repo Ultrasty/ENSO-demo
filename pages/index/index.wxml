@@ -28,7 +28,7 @@
     <!-- 年月 -->
     <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
 
-    <view class="subtitle">预测结果：</view>
+    <view class="subtitle">预测结果（点击图表放大）：</view>
     <!-- 预测结果 chartMain -->
     <view>
         <view bind:tap="handlePopup" class="chartMain">

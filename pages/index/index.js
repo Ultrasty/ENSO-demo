@@ -10,7 +10,7 @@ Component({
 
     //不同组件使用的data都混到一起了
     data: {
-        chartDataMain: {
+        chartDataMainOption: {
             xAxis: {
                 data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
             },
@@ -140,10 +140,15 @@ Component({
 
             this.hidePicker();
 
-            let option = chartMain.getOption();
-            option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
-            chartMain.clear();
-            chartMain.setOption(option)
+            wx.request({
+                url: 'https://tjseai307.com/enso/findByYearAndMonth?year=2022&month=' + parseInt(this.data.month.split('-')[1]).toString(),
+                success: (res) => {
+                    this.data.chartDataMainOption = res.data;
+                    //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
+                    let ecComponent = this.selectComponent('#chartMain');
+                    ecComponent.init(initChartMain);
+                }
+            })
         },
         //日期选择器
         onColumnChange(e) {
@@ -168,31 +173,9 @@ Component({
             //懒加载，保证绘图的时候，canvas的大小是正确的
             //设300是因为popup的动画时间是240
             setTimeout(() => {
-                this.ecComponent = this.selectComponent('#chartRotated');
-                this.ecComponent.init(initChartRotated);
+                let ecComponent = this.selectComponent('#chartRotated');
+                ecComponent.init(initChartRotated);
             }, 300)
-
-            let that= this;
-            wx.request({
-                // url: 'http://192.168.50.122:8080/enso/findByYearAndMonth?year=2022&month=10',
-                url:'https://xxxtest.com/users',
-                // dataType: 'json',
-                success(res) {
-                  console.log('https://xxxtest.com/users', res)
-                  wx.showToast({
-                    title: JSON.stringify(res.data),
-                    icon: 'success',
-                    duration: 2000
-                  })
-                },
-                fail(res){
-                    wx.showToast({
-                        title: '失败',
-                        icon: 'success',
-                        duration: 2000
-                    })
-                }
-            })
 
         },
         //popup
@@ -208,16 +191,7 @@ Component({
             });
         },
         test() {
-            const merged = mergeDeep({
-                a: {
-                    a: 1
-                }
-            }, {
-                a: {
-                    a: 23
-                }
-            });
-            console.log(merged);
+            console.log(parseInt(this.data.month.split('-')[1]))
         }
     },
 });
@@ -264,8 +238,11 @@ function initChartMain(canvas, width, height, dpr) {
         },
     };
 
-    option = mergeDeep(option, getCurrentPages()[0].data.chartDataMain);
+    //将图表【样式配置】和【数据配置】合并成【最终配置】
+    option = mergeDeep(option, getCurrentPages()[0].data.chartDataMainOption);
+    //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
     option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages()[0].data.month;
+    //旋转图表的骚操作
     delete(option.yAxis.data);
 
     chartMain.setOption(option);
@@ -318,8 +295,11 @@ function initChartRotated(canvas, width, height, dpr) {
         }
     };
 
-    option = mergeDeep(option, getCurrentPages()[0].data.chartDataMain);
+    //将图表【样式配置】和【数据配置】合并成【最终配置】
+    option = mergeDeep(option, getCurrentPages()[0].data.chartDataMainOption);
+    //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
     option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages()[0].data.month;
+    //旋转图表的骚操作
     delete(option.xAxis.data);
 
 
