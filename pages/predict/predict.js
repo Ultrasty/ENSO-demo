@@ -140,11 +140,15 @@ Component({
 
             this.hidePicker();
 
+            chartMain.showLoading({
+                text: 'loading'
+            });
             wx.request({
                 url: 'https://tjseai307.com/enso/findByYearAndMonth?year=2022&month=' + parseInt(this.data.month.split('-')[1]).toString(),
                 success: (res) => {
                     this.data.chartDataMainOption = res.data;
                     //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
+                    chartMain.hideLoading();
                     let ecComponent = this.selectComponent('#chartMain');
                     ecComponent.init(initChartMain);
                 }

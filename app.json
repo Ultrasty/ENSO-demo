@@ -1,6 +1,6 @@
 {
     "pages": [
-        "pages/index/index"
+        "pages/predict/predict"
     ],
     "usingComponents": {
         "t-tag": "tdesign-miniprogram/tag/tag",
