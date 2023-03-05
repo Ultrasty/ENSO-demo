@@ -194,6 +194,25 @@ Component({
                 visible: false,
             });
         },
+        //转发、分享到朋友圈、收藏时的回调函数
+        onShareAppMessage: function (options) {
+            return {
+                title: 'ENSO预测与分析',
+                imageUrl: '/imgs/nesdis-el-nino.jpg',
+            }
+        },
+        onShareTimeline: function () {
+            return {
+                title: 'ENSO预测与分析',
+                imageUrl: '/imgs/nesdis-el-nino.jpg',
+            }
+        },
+        onAddToFavorites: function (options) {
+            return {
+                title: 'ENSO预测与分析',
+                imageUrl: '/imgs/nesdis-el-nino.jpg',
+            }
+        },
         test() {
             console.log(parseInt(this.data.month.split('-')[1]))
         }
