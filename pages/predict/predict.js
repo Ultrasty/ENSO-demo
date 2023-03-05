@@ -4,11 +4,6 @@ import {
 
 import * as echarts from '../../ec-canvas/echarts';
 
-//保存图表实例
-let chartMain = null;
-let chartRotated = null;
-
-
 Component({
     ready() {
         this.ecComponentMain = this.selectComponent('#chartMain');
@@ -16,6 +11,9 @@ Component({
         this.initChartMain();
     },
     data: {
+        //保存图表实例
+        chartRotated: null,
+        chartMain: null,
         chartDataMainOption: {
             xAxis: {
                 data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
@@ -120,7 +118,7 @@ Component({
 
             this.hidePicker();
 
-            chartMain.showLoading({
+            this.chartMain.showLoading({
                 text: 'loading'
             });
             wx.request({
@@ -128,7 +126,7 @@ Component({
                 success: (res) => {
                     this.data.chartDataMainOption = res.data;
                     //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
-                    chartMain.hideLoading();
+                    this.chartMain.hideLoading();
                     this.initChartMain()
                 }
             })
@@ -194,12 +192,12 @@ Component({
         initChartMain() {
             this.ecComponentMain.init((canvas, width, height, dpr) => {
 
-                chartMain = echarts.init(canvas, null, {
+                this.chartMain = echarts.init(canvas, null, {
                     width: width,
                     height: height,
                     devicePixelRatio: dpr // 像素
                 });
-                canvas.setChart(chartMain);
+                canvas.setChart(this.chartMain);
 
                 var option = {
                     grid: {
@@ -235,19 +233,19 @@ Component({
                 //旋转图表的骚操作
                 delete(option.yAxis.data);
 
-                chartMain.setOption(option);
-                return chartMain;
+                this.chartMain.setOption(option);
+                return this.chartMain;
             })
         },
         initChartRotated() {
             this.ecComponentRotated.init((canvas, width, height, dpr) => {
 
-                chartRotated = echarts.init(canvas, null, {
+                this.chartRotated = echarts.init(canvas, null, {
                     width: width,
                     height: height,
                     devicePixelRatio: dpr // 像素
                 });
-                canvas.setChart(chartRotated);
+                canvas.setChart(this.chartRotated);
 
                 var option = {
                     grid: {
@@ -293,8 +291,8 @@ Component({
                 delete(option.xAxis.data);
 
 
-                chartRotated.setOption(option);
-                return chartRotated;
+                this.chartRotated.setOption(option);
+                return this.chartRotated;
             })
         },
         test() {
