@@ -1,47 +1,6 @@
 <!-- 预测页面 -->
 <view wx:if="{{value=='predict'}}">
-
-    <!-- 这个 --td-navbar-padding-top:0 非得要写在内联样式里才生效，不能放到index.scss里去，无语了 -->
-    <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="ENSO集合预测结果查询" t-class-title="nav-title" />
-
-    <!-- popup的图表 chartRotated -->
-    <!-- 没法直接把view 元素旋转90°来实现图表旋转，echarts图表始终是一个方向，只能改echarts 配置项来实现 无语了 -->
-    <!-- 参考链接 http://www.sheep11.com/echarts/e-xQ-p7W_GpY -->
-    <!-- 这popup的duration属性不生效啊，无语 -->
-    <!-- 为什要popup 而不使用echarts的滑动图表的能力呢，因为会闪退，echarts占用内存过大被微信kill掉 -->
-    <t-popup visible="{{visible}}" bind:visible-change="onVisibleChange" placement="center">
-        <view class="block">
-            <t-icon t-class="close-btn" name="close-circle" size="32" color="grey" bind:tap="onClose" />
-            <view>
-                <view class="chartRotated">
-                    <ec-canvas id="chartRotated" canvas-id="chartRotated" ec="{{ ecRotated }}"></ec-canvas>
-                </view>
-            </view>
-        </view>
-    </t-popup>
-
-    <view class="subtitle">起报时间：{{month}}</view>
-
-    <!-- 日期选择器 -->
-    <t-cell title="选择日期" hover note="{{monthText}}" arrow data-mode="month" bindtap="showPicker" t-class="pannel-item" />
-
-    <!-- 年月 -->
-    <t-date-time-picker title="选择日期" visible="{{monthVisible}}" mode="month" value="{{month}}" format="YYYY-MM" bindchange="onConfirm" bindpick="onColumnChange" bindcancel="hidePicker" start="{{start}}" end="{{end}}" />
-
-    <view class="subtitle">预测结果（点击图表放大）：</view>
-    <!-- 预测结果 chartMain -->
-    <view>
-        <view bind:tap="handlePopup" class="chartMain">
-            <ec-canvas id="chartMain" canvas-id="chartMain" ec="{{ ecMain }}"></ec-canvas>
-        </view>
-    </view>
-
-    <view class="subtitle">结果描述：</view>
-
-    <view bind:tap="test" style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
-
-    <!-- 底部留空，防止被标签栏遮住 -->
-    <view style="height: 180rpx;"></view>
+    <predict id="predict"></predict>
 </view>
 
 
