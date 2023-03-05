@@ -1,8 +1,6 @@
 import {
     mergeDeep
 } from '../../utils/util';
-var app = getApp();
-
 
 Component({
     data: {

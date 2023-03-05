@@ -1,4 +1,8 @@
 Component({
+    ready() {
+        let ecComponent = this.selectComponent("#chart4");
+        ecComponent.init(this.initChart);
+    },
     data: {
         //Collapse 折叠面板 展开的栏的列表
         activeValues: [],
@@ -45,12 +49,9 @@ Component({
             });
         },
         test() {
-            let ecComponent = this.selectComponent("#chart4");
-            ecComponent.init(this.initChart);
-
-            // wx.navigateTo({
-            //   url: '/pages/nullpage/nullpage',
-            // })
+            wx.navigateTo({
+              url: '/pages/nullpage/nullpage',
+            })
         },
         initChart(canvas, width, height, dpr,test) {
             console.log(test)
