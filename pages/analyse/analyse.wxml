@@ -1,24 +1,27 @@
 <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
 
-    <view class="wrapper">
-        <t-collapse value="{{activeValues}}" bind:change="handleChange">
-            <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
-                暂无数据
-            </t-collapse-panel>
-        </t-collapse>
-        <t-collapse value="{{activeValues}}" bind:change="handleChange">
-            <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
-                暂无数据
-            </t-collapse-panel>
-        </t-collapse>
-        <t-collapse value="{{activeValues}}" bind:change="handleChange">
-            <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
-                暂无数据
-            </t-collapse-panel>
-        </t-collapse>
-        <t-collapse value="{{activeValues}}" bind:change="handleChange">
-            <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
-                暂无数据
-            </t-collapse-panel>
-        </t-collapse>
-    </view>
+<view class="wrapper">
+    <t-collapse value="{{activeValues}}" bind:change="handleChange">
+        <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
+            暂无数据
+        </t-collapse-panel>
+    </t-collapse>
+    <t-collapse value="{{activeValues}}" bind:change="handleChange">
+        <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
+            暂无数据
+        </t-collapse-panel>
+    </t-collapse>
+    <t-collapse value="{{activeValues}}" bind:change="handleChange">
+        <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
+            暂无数据
+        </t-collapse-panel>
+    </t-collapse>
+    <t-collapse value="{{activeValues}}" bind:change="handleChange">
+        <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
+            <view class="container">
+                <ec-canvas id="chart4" ec="{{ ec }}"></ec-canvas>
+            </view>
+        </t-collapse-panel>
+    </t-collapse>
+    <t-button bind:tap="test">测试</t-button>
+</view>

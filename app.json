@@ -2,7 +2,8 @@
     "pages": [
         "pages/index/index",
         "pages/analyse/analyse",
-        "pages/predict/predict"
+        "pages/predict/predict",
+        "pages/nullpage/nullpage"
     ],
     "usingComponents": {
         "t-tag": "tdesign-miniprogram/tag/tag",

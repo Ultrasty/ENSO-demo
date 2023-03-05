@@ -233,9 +233,9 @@ function initChartMain(canvas, width, height, dpr) {
     };
 
     //将图表【样式配置】和【数据配置】合并成【最终配置】
-    option = mergeDeep(option, getCurrentPages()[0].selectComponent("#predict").data.chartDataMainOption);
+    option = mergeDeep(option, getCurrentPages().slice(-1)[0].selectComponent("#predict").data.chartDataMainOption);
     //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
-    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages()[0].selectComponent("#predict").data.month;
+    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages().slice(-1)[0].selectComponent("#predict").data.month;
     //旋转图表的骚操作
     delete(option.yAxis.data);
 
@@ -290,9 +290,9 @@ function initChartRotated(canvas, width, height, dpr) {
     };
 
     //将图表【样式配置】和【数据配置】合并成【最终配置】
-    option = mergeDeep(option, getCurrentPages()[0].selectComponent("#predict").data.chartDataMainOption);
+    option = mergeDeep(option, getCurrentPages().slice(-1)[0].selectComponent("#predict").data.chartDataMainOption);
     //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
-    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages()[0].selectComponent("#predict").data.month;
+    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages().slice(-1)[0].selectComponent("#predict").data.month;
     //旋转图表的骚操作
     delete(option.xAxis.data);
 

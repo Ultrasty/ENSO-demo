@@ -1,0 +1,2 @@
+<!--pages/nullpage.wxml-->
+<t-button bind:tap="test">测试</t-button>
