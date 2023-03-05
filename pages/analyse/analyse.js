@@ -21,7 +21,7 @@ Component({
     },
     data: {
         //Collapse 折叠面板 展开的栏的列表
-        activeValues: [],
+        activeValues: [0,1,2,3],
         ec1:{
             lazyLoad: true
         },
