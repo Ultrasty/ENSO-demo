@@ -31,7 +31,9 @@
     </t-collapse>
     <!-- <t-button bind:tap="test">测试</t-button> -->
 </view>
-
+<view>
+    <image bind:tap="test" src="https://img-blog.csdnimg.cn/1e8abc58a6574759a68486b334190915.png"/>
+</view>
 
 <!-- 底部留空，防止被标签栏遮住 -->
 <view style="height: 180rpx;"></view>

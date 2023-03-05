@@ -1,6 +1,7 @@
-
 import * as echarts from '../../ec-canvas/echarts';
-import { mergeDeep } from '../../utils/util';
+import {
+    mergeDeep
+} from '../../utils/util';
 
 //保存图表实例
 let chart1 = null;
@@ -21,14 +22,14 @@ Component({
     },
     data: {
         //Collapse 折叠面板 展开的栏的列表
-        activeValues: [0,1,2,3],
-        ec1:{
+        activeValues: [0, 1, 2, 3],
+        ec1: {
             lazyLoad: true
         },
-        ec2:{
+        ec2: {
             lazyLoad: true
         },
-        ec3:{
+        ec3: {
             lazyLoad: true
         },
         ec4: {
@@ -147,8 +148,8 @@ Component({
             }]
         },
         commomOption: {
-            grid:{
-                top:20,
+            grid: {
+                top: 20,
                 bottom: 20
             }
         }
@@ -161,8 +162,23 @@ Component({
             });
         },
         test() {
-            wx.navigateTo({
-                url: '/pages/nullpage/nullpage',
+            wx.request({
+                url: "https://httpbin.org/get",
+                success(res) {
+                    wx.showToast({
+                        title: JSON.stringify(res.data),
+                        icon: 'success',
+                        duration: 2000
+                    })
+                    console.log(res.data)
+                },
+                fail(res) {
+                    wx.showToast({
+                        title: '失败！',
+                        icon: 'error',
+                        duration: 2000
+                    })
+                }
             })
         },
         initChart1() {
