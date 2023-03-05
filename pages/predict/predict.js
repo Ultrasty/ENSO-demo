@@ -170,25 +170,7 @@ Component({
                 visible: false,
             });
         },
-        //转发、分享到朋友圈、收藏时的回调函数
-        onShareAppMessage: function (options) {
-            return {
-                title: '同济大学ENSO预测与分析',
-                imageUrl: '/imgs/nesdis-el-nino.jpg',
-            }
-        },
-        onShareTimeline: function () {
-            return {
-                title: '同济大学ENSO预测与分析',
-                imageUrl: '/imgs/nesdis-el-nino.jpg',
-            }
-        },
-        onAddToFavorites: function (options) {
-            return {
-                title: '同济大学ENSO预测与分析',
-                imageUrl: '/imgs/nesdis-el-nino.jpg',
-            }
-        },
+
         initChartMain() {
             this.ecComponentMain.init((canvas, width, height, dpr) => {
 
