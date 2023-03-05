@@ -2,7 +2,18 @@ import {
     mergeDeep
 } from '../../utils/util';
 
+import * as echarts from '../../ec-canvas/echarts';
+
+//保存图表实例
+let chartMain = null;
+let chartRotated = null;
+
+
 Component({
+    ready(){
+        let ecComponent = this.selectComponent('#chartMain');
+        ecComponent.init(this.initChartMain);
+    },
     data: {
         chartDataMainOption: {
             xAxis: {
@@ -63,7 +74,7 @@ Component({
         minute: '23:59',
         //预测 主图
         ecMain: {
-            onInit: initChartMain
+            lazyLoad: true
         },
         //预测 放大旋转图
         ecRotated: {
@@ -118,7 +129,7 @@ Component({
                     //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
                     chartMain.hideLoading();
                     let ecComponent = this.selectComponent('#chartMain');
-                    ecComponent.init(initChartMain);
+                    ecComponent.init(this.initChartMain);
                 }
             })
         },
@@ -146,7 +157,7 @@ Component({
             //设300是因为popup的动画时间是240
             setTimeout(() => {
                 let ecComponent = this.selectComponent('#chartRotated');
-                ecComponent.init(initChartRotated);
+                ecComponent.init(this.initChartRotated);
             }, 300)
 
         },
@@ -181,6 +192,108 @@ Component({
                 imageUrl: '/imgs/nesdis-el-nino.jpg',
             }
         },
+        initChartMain(canvas, width, height, dpr) {
+
+            chartMain = echarts.init(canvas, null, {
+                width: width,
+                height: height,
+                devicePixelRatio: dpr // 像素
+            });
+            canvas.setChart(chartMain);
+        
+            var option = {
+                grid: {
+                    //控制margin
+                    y: 35
+                },
+                dataZoom: [
+                    // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
+                ],
+                title: {
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 12
+                    }
+                },
+                yAxis: {
+                    splitLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
+                    bottom: 0
+                },
+            };
+        
+            //将图表【样式配置】和【数据配置】合并成【最终配置】
+            option = mergeDeep(option, getCurrentPages().slice(-1)[0].selectComponent("#predict").data.chartDataMainOption);
+            //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
+            option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages().slice(-1)[0].selectComponent("#predict").data.month;
+            //旋转图表的骚操作
+            delete(option.yAxis.data);
+        
+            chartMain.setOption(option);
+            return chartMain;
+        },
+        initChartRotated(canvas, width, height, dpr) {
+
+            chartRotated = echarts.init(canvas, null, {
+                width: width,
+                height: height,
+                devicePixelRatio: dpr // 像素
+            });
+            canvas.setChart(chartRotated);
+        
+            var option = {
+                grid: {
+                    // y:35
+                },
+                title: {
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 12
+                    }
+                },
+                yAxis: {
+                    axisLabel: {
+                        rotate: -90
+                    },
+                    inverse: 'true',
+                },
+                xAxis: {
+                    // min:-3,
+                    // max:3,
+                    axisLabel: { //坐标轴刻度标签的相关设置。
+                        rotate: 90 //刻度标签旋转的角度，
+                    },
+                    position: 'top',
+                    splitLine: {
+                        lineStyle: {
+                            type: 'dashed'
+                        }
+                    }
+                },
+                //echarts图例的文字没法旋转，只能这样了
+                legend: {
+                    data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
+                    bottom: 0
+                }
+            };
+        
+            //将图表【样式配置】和【数据配置】合并成【最终配置】
+            option = mergeDeep(option, getCurrentPages().slice(-1)[0].selectComponent("#predict").data.chartDataMainOption);
+            //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
+            option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages().slice(-1)[0].selectComponent("#predict").data.month;
+            //旋转图表的骚操作
+            delete(option.xAxis.data);
+        
+        
+            chartRotated.setOption(option);
+            return chartRotated;
+        },
         test() {
             console.log(parseInt(this.data.month.split('-')[1]))
         }
@@ -188,113 +301,3 @@ Component({
 })
 
 
-import * as echarts from '../../ec-canvas/echarts';
-
-//保存图表实例
-let chartMain = null;
-let chartRotated = null;
-
-function initChartMain(canvas, width, height, dpr) {
-
-    chartMain = echarts.init(canvas, null, {
-        width: width,
-        height: height,
-        devicePixelRatio: dpr // 像素
-    });
-    canvas.setChart(chartMain);
-
-    var option = {
-        grid: {
-            //控制margin
-            y: 35
-        },
-        dataZoom: [
-            // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
-        ],
-        title: {
-            left: 'center',
-            textStyle: {
-                fontSize: 12
-            }
-        },
-        yAxis: {
-            splitLine: {
-                lineStyle: {
-                    type: 'dashed'
-                }
-            }
-        },
-        legend: {
-            data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
-            bottom: 0
-        },
-    };
-
-    //将图表【样式配置】和【数据配置】合并成【最终配置】
-    option = mergeDeep(option, getCurrentPages().slice(-1)[0].selectComponent("#predict").data.chartDataMainOption);
-    //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
-    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages().slice(-1)[0].selectComponent("#predict").data.month;
-    //旋转图表的骚操作
-    delete(option.yAxis.data);
-
-    chartMain.setOption(option);
-    return chartMain;
-}
-
-
-function initChartRotated(canvas, width, height, dpr) {
-
-    chartRotated = echarts.init(canvas, null, {
-        width: width,
-        height: height,
-        devicePixelRatio: dpr // 像素
-    });
-    canvas.setChart(chartRotated);
-
-    var option = {
-        grid: {
-            // y:35
-        },
-        title: {
-            left: 'center',
-            textStyle: {
-                fontSize: 12
-            }
-        },
-        yAxis: {
-            axisLabel: {
-                rotate: -90
-            },
-            inverse: 'true',
-        },
-        xAxis: {
-            // min:-3,
-            // max:3,
-            axisLabel: { //坐标轴刻度标签的相关设置。
-                rotate: 90 //刻度标签旋转的角度，
-            },
-            position: 'top',
-            splitLine: {
-                lineStyle: {
-                    type: 'dashed'
-                }
-            }
-        },
-        //echarts图例的文字没法旋转，只能这样了
-        legend: {
-            data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
-            bottom: 0
-        }
-    };
-
-    //将图表【样式配置】和【数据配置】合并成【最终配置】
-    option = mergeDeep(option, getCurrentPages().slice(-1)[0].selectComponent("#predict").data.chartDataMainOption);
-    //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
-    option.title.text = 'Niño 3.4 Forecast Results ' + getCurrentPages().slice(-1)[0].selectComponent("#predict").data.month;
-    //旋转图表的骚操作
-    delete(option.xAxis.data);
-
-
-    chartRotated.setOption(option);
-    return chartRotated;
-}
