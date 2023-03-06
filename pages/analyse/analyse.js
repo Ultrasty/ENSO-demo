@@ -42,7 +42,10 @@ Component({
         commomOption: {
             grid: {
                 top: 20,
-                bottom: 20
+                bottom:45
+            },
+            legend:{
+                bottom: 0
             }
         }
     },
