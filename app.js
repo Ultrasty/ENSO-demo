@@ -7,9 +7,56 @@ if (debug) {
     var Mock = require("./utils/mock.mp.js");
     // var Mock = require("./utils/WxMock.js"); 
     Mock.setup({
-        timeout: 1000
+        timeout: '0-5000'
     })
 
+    Mock.mock('https://tjseai307.com/chartdata?chart=1',{
+        xAxis: {
+            type: 'category',
+            data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"]
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+                data: [-1.174209315, -0.993191958, -0.19134674, -0.188610001, 0.105001105, -0.181135163, -0.649433319, -1.039655168, -1.023838987, -0.643442209, -0.706740268, -1.201603068, -1.320892477, -0.434853224],
+                type: 'line'
+            },
+            {
+                data: [, -0.665512248, -0.997081641, -0.372597725, -0.013279767, -0.056404426, -0.421955669, -0.920772443, -1.231792183, -0.929954579, -1.036544915, -1.311704813, -1.104903927, -0.001281489],
+                type:'line'
+            }
+        ]
+    })
+
+    Mock.mock(/https:\/\/tjseai307\.com\/chartdata\?chart=[1-12]*/,{
+        legend: {
+            // Try 'horizontal'
+            orient: 'vertical',
+            right: 10,
+            top: 'center'
+        },
+        dataset: {
+            source: [
+                ['product', '2015', '2016', '2017'],
+                ['Matcha Latte', 43.3, 85.8, 93.7],
+                ['Milk Tea', 83.1, 73.4, 55.1],
+                ['Cheese Cocoa', 86.4, 65.2, 82.5],
+                ['Walnut Brownie', 72.4, 53.9, 39.1]
+            ]
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {},
+        series: [{
+            type: 'bar'
+        }, {
+            type: 'bar'
+        }, {
+            type: 'bar'
+        }]
+    })
 
     Mock.mock('https://tjseai307.com/enso/findByYearAndMonth?year=2022&month=10', {
         xAxis: {
@@ -75,8 +122,6 @@ if (debug) {
             }
         ]
     })
-
-
 }
 
 
