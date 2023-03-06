@@ -157,7 +157,7 @@ Component({
                 wx.request({
                     url: 'https://tjseai307.com/chartdata?chart=4',
                     success(res) {
-                        console.log(res.data)
+                        console.log(res.data);
                         that.data.chart4data = res.data;
                         chart4.hideLoading();
                         var option = mergeDeep(that.data.commomOption, that.data.chart4data);
