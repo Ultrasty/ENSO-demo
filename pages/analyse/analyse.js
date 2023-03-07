@@ -35,122 +35,17 @@ Component({
         ec4: {
             lazyLoad: true
         },
-        chart1data: {
-            legend: {
-                // Try 'horizontal'
-                orient: 'vertical',
-                right: 10,
-                top: 'center'
-            },
-            dataset: {
-                source: [
-                    ['product', '2015', '2016', '2017'],
-                    ['Matcha Latte', 43.3, 85.8, 93.7],
-                    ['Milk Tea', 83.1, 73.4, 55.1],
-                    ['Cheese Cocoa', 86.4, 65.2, 82.5],
-                    ['Walnut Brownie', 72.4, 53.9, 39.1]
-                ]
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }]
-        },
-        chart2data: {
-            legend: {
-                // Try 'horizontal'
-                orient: 'vertical',
-                right: 10,
-                top: 'center'
-            },
-            dataset: {
-                source: [
-                    ['product', '2015', '2016', '2017'],
-                    ['Matcha Latte', 43.3, 85.8, 93.7],
-                    ['Milk Tea', 83.1, 73.4, 55.1],
-                    ['Cheese Cocoa', 86.4, 65.2, 82.5],
-                    ['Walnut Brownie', 72.4, 53.9, 39.1]
-                ]
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }]
-        },
-        chart3data: {
-            legend: {
-                // Try 'horizontal'
-                orient: 'vertical',
-                right: 10,
-                top: 'center'
-            },
-            dataset: {
-                source: [
-                    ['product', '2015', '2016', '2017'],
-                    ['Matcha Latte', 43.3, 85.8, 93.7],
-                    ['Milk Tea', 83.1, 73.4, 55.1],
-                    ['Cheese Cocoa', 86.4, 65.2, 82.5],
-                    ['Walnut Brownie', 72.4, 53.9, 39.1]
-                ]
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }]
-        },
-        chart4data: {
-            legend: {
-                // Try 'horizontal'
-                orient: 'vertical',
-                right: 10,
-                top: 'center'
-            },
-            dataset: {
-                source: [
-                    ['product', '2015', '2016', '2017'],
-                    ['Matcha Latte', 43.3, 85.8, 93.7],
-                    ['Milk Tea', 83.1, 73.4, 55.1],
-                    ['Cheese Cocoa', 86.4, 65.2, 82.5],
-                    ['Walnut Brownie', 72.4, 53.9, 39.1]
-                ]
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {},
-            series: [{
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }, {
-                type: 'bar'
-            }]
-        },
+        chart1data: {},
+        chart2data: {},
+        chart3data: {},
+        chart4data: {},
         commomOption: {
             grid: {
                 top: 20,
-                bottom: 20
+                bottom:45
+            },
+            legend:{
+                bottom: 0
             }
         }
     },
@@ -163,7 +58,7 @@ Component({
         },
         test() {
             wx.request({
-                url: "https://httpbin.org/get",
+                url: "https://tjseai307.com/chart5data",
                 success(res) {
                     wx.showToast({
                         title: JSON.stringify(res.data),
@@ -189,9 +84,17 @@ Component({
                     devicePixelRatio: dpr // 像素
                 });
                 canvas.setChart(chart1);
-
-                var option = mergeDeep(this.data.commomOption, this.data.chart1data);
-                chart1.setOption(option);
+                chart1.showLoading()
+                let that = this;
+                wx.request({
+                    url: 'https://tjseai307.com/chartdata?chart=1',
+                    success(res) {
+                        that.data.chart1data = res.data;
+                        chart1.hideLoading();
+                        var option = mergeDeep(that.data.commomOption, that.data.chart1data);
+                        chart1.setOption(option);
+                    }
+                })
                 return chart1;
             })
         },
@@ -204,8 +107,18 @@ Component({
                 });
                 canvas.setChart(chart2);
 
-                var option = mergeDeep(this.data.commomOption, this.data.chart2data);
-                chart2.setOption(option);
+                chart2.showLoading()
+                let that = this;
+                wx.request({
+                    url: 'https://tjseai307.com/chartdata?chart=2',
+                    success(res) {
+                        console.log(res.data)
+                        that.data.chart2data = res.data;
+                        chart2.hideLoading();
+                        var option = mergeDeep(that.data.commomOption, that.data.chart2data);
+                        chart2.setOption(option);
+                    }
+                })
                 return chart2;
             })
         },
@@ -218,8 +131,18 @@ Component({
                 });
                 canvas.setChart(chart3);
 
-                var option = mergeDeep(this.data.commomOption, this.data.chart3data);
-                chart3.setOption(option);
+                chart3.showLoading()
+                let that = this;
+                wx.request({
+                    url: 'https://tjseai307.com/chartdata?chart=3',
+                    success(res) {
+                        console.log(res.data)
+                        that.data.chart3data = res.data;
+                        chart3.hideLoading();
+                        var option = mergeDeep(that.data.commomOption, that.data.chart3data);
+                        chart3.setOption(option);
+                    }
+                })
                 return chart3;
             })
         },
@@ -232,8 +155,18 @@ Component({
                 });
                 canvas.setChart(chart4);
 
-                var option = mergeDeep(this.data.commomOption, this.data.chart4data);
-                chart4.setOption(option);
+                chart4.showLoading()
+                let that = this;
+                wx.request({
+                    url: 'https://tjseai307.com/chartdata?chart=4',
+                    success(res) {
+                        console.log(res.data);
+                        that.data.chart4data = res.data;
+                        chart4.hideLoading();
+                        var option = mergeDeep(that.data.commomOption, that.data.chart4data);
+                        chart4.setOption(option);
+                    }
+                })
                 return chart4;
             })
         }
