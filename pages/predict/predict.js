@@ -11,6 +11,9 @@ Component({
         this.initChartMain();
     },
     data: {
+
+        chartStyle:"",
+
         //保存图表实例
         chartRotated: null,
         chartMain: null,
@@ -182,6 +185,7 @@ Component({
                 canvas.setChart(this.chartMain);
 
                 var option = {
+
                     grid: {
                         //控制margin
                         y: 35
@@ -204,8 +208,20 @@ Component({
                     },
                     legend: {
                         data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
-                        bottom: 0
-                    },
+                        bottom: 0,
+                        textStyle: {
+                            rich: {
+                                a: {
+                                    color: 'blue',
+                                    fontSize:12,
+                                    rotate: 90
+                                },
+                            }
+                        },
+                        formatter: function (name) {
+                            return '{a|' + name + "}";
+                        },
+                    }
                 };
 
                 //将图表【样式配置】和【数据配置】合并成【最终配置】
@@ -214,8 +230,9 @@ Component({
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 //旋转图表的骚操作
                 delete(option.yAxis.data);
-
+                this.setData({chartStyle:"transform: rotate(90deg)"});
                 this.chartMain.setOption(option);
+                
                 return this.chartMain;
             })
         },
