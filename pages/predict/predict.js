@@ -230,7 +230,7 @@ Component({
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 //旋转图表的骚操作
                 delete(option.yAxis.data);
-                this.setData({chartStyle:"transform: rotate(90deg)"});
+                // this.setData({chartStyle:"transform: rotate(90deg)"});
                 this.chartMain.setOption(option);
                 
                 return this.chartMain;
@@ -247,9 +247,14 @@ Component({
                 canvas.setChart(this.chartRotated);
 
                 var option = {
+
                     grid: {
-                        // y:35
+                        //控制margin
+                        y: 35
                     },
+                    dataZoom: [
+                        // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
+                    ],
                     title: {
                         left: 'center',
                         textStyle: {
@@ -257,28 +262,27 @@ Component({
                         }
                     },
                     yAxis: {
-                        axisLabel: {
-                            rotate: -90
-                        },
-                        inverse: 'true',
-                    },
-                    xAxis: {
-                        // min:-3,
-                        // max:3,
-                        axisLabel: { //坐标轴刻度标签的相关设置。
-                            rotate: 90 //刻度标签旋转的角度，
-                        },
-                        position: 'top',
                         splitLine: {
                             lineStyle: {
                                 type: 'dashed'
                             }
                         }
                     },
-                    //echarts图例的文字没法旋转，只能这样了
                     legend: {
                         data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
-                        bottom: 0
+                        bottom: 0,
+                        textStyle: {
+                            rich: {
+                                a: {
+                                    color: 'blue',
+                                    fontSize:12,
+                                    rotate: 90
+                                },
+                            }
+                        },
+                        formatter: function (name) {
+                            return '{a|' + name + "}";
+                        },
                     }
                 };
 
@@ -287,9 +291,9 @@ Component({
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 //旋转图表的骚操作
-                delete(option.xAxis.data);
+                delete(option.yAxis.data);
 
-
+                this.setData({chartStyle:"transform: rotate(90deg)"});
                 this.chartRotated.setOption(option);
                 return this.chartRotated;
             })
