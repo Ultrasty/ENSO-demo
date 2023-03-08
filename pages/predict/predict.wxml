@@ -2,7 +2,7 @@
 <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="ENSO集合预测结果查询" t-class-title="nav-title" />
 
 
-<view style="padding-bottom: 10rpx; margin: 16rpx; border-radius: 16rpx; background-color: white;overflow: hidden;">
+<view style="padding-bottom: 10rpx; margin: 16rpx; border-radius: 32rpx; background-color: white;overflow: hidden;">
     <!-- popup的图表 chartRotated -->
     <!-- 没法直接把view 元素旋转90°来实现图表旋转，echarts图表始终是一个方向，只能改echarts 配置项来实现 无语了 -->
     <!-- 参考链接 http://www.sheep11.com/echarts/e-xQ-p7W_GpY -->
@@ -37,7 +37,7 @@
 
     <view class="subtitle">结果描述：</view>
 
-    <view bind:tap="test" style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
+    <view bind:tap="test" style="border-radius: 32rpx ;border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
 
 </view>
 
