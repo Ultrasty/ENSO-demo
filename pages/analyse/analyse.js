@@ -42,7 +42,7 @@ Component({
         commomOption: {
             grid: {
                 top: 20,
-                bottom:45,
+                bottom:100,
                 right: 0,
                 left:35
             },
@@ -53,7 +53,7 @@ Component({
                 rich: {
                     a: {
                         color: 'black',
-                        fontSize:10,
+                        fontSize:9,
                     },
                 }
             },
@@ -123,7 +123,7 @@ Component({
                 chart2.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'https://tjseai307.com/chartdata?chart=2',
+                    url: 'https://tjseai307.com/chartdata?chart=2&year=2022&month=1',
                     success(res) {
                         console.log(res.data)
                         that.data.chart2data = res.data;
