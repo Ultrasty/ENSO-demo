@@ -19,6 +19,7 @@
         </t-collapse-panel>
 
         <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
+            <t-button bindtap="test">test</t-button>
             <view class="container">
                 <ec-canvas id="chart3" ec="{{ ec3 }}"></ec-canvas>
             </view>

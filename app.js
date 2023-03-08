@@ -253,7 +253,11 @@ if (debug) {
         ]
     })
 
-    Mock.mock(/https:\/\/tjseai307\.com\/chartdata\?chart=[1-12]*/,{
+    Mock.mock('https://tjseai307.com/chartdata?chart=3',{
+        
+    })
+
+    Mock.mock('https://tjseai307.com/chartdata?chart=4',{
         xAxis: {
             type: 'category',
             data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"]

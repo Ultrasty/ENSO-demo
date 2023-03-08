@@ -23,7 +23,7 @@ Component({
     data: {
         chart2selection:{
             availableMonth:[1,2,3,4,10],
-            currentMonth:0
+            currentMonth:1
         },
         //Collapse 折叠面板 展开的栏的列表
         activeValues: [0, 1, 2, 3],
@@ -82,24 +82,25 @@ Component({
             });
         },
         test() {
-            wx.request({
-                url: "https://tjseai307.com/chart5data",
-                success(res) {
-                    wx.showToast({
-                        title: JSON.stringify(res.data),
-                        icon: 'success',
-                        duration: 2000
-                    })
-                    console.log(res.data)
-                },
-                fail(res) {
-                    wx.showToast({
-                        title: '失败！',
-                        icon: 'error',
-                        duration: 2000
-                    })
-                }
-            })
+            // this.initChart3();
+            // wx.request({
+            //     url: "https://tjseai307.com/chart5data",
+            //     success(res) {
+            //         wx.showToast({
+            //             title: JSON.stringify(res.data),
+            //             icon: 'success',
+            //             duration: 2000
+            //         })
+            //         console.log(res.data)
+            //     },
+            //     fail(res) {
+            //         wx.showToast({
+            //             title: '失败！',
+            //             icon: 'error',
+            //             duration: 2000
+            //         })
+            //     }
+            // })
         },
         initChart1() {
             this.ecComponent1.init((canvas, width, height, dpr) => {
@@ -116,7 +117,7 @@ Component({
                     success(res) {
                         that.data.chart1data = res.data;
                         chart1.hideLoading();
-                        var option = mergeDeep(that.data.commomOption, that.data.chart1data);
+                        var option = mergeDeep(that.data.chart1data, that.data.commomOption);
                         chart1.setOption(option);
                     }
                 })
@@ -137,10 +138,9 @@ Component({
                 wx.request({
                     url: 'https://tjseai307.com/chartdata?chart=2&year=2022&month=' +this.data.chart2selection.availableMonth[this.data.chart2selection.currentMonth].toString(),
                     success(res) {
-                        console.log(res.data)
                         that.data.chart2data = res.data;
                         chart2.hideLoading();
-                        var option = mergeDeep(that.data.commomOption, that.data.chart2data);
+                        var option = mergeDeep(that.data.chart2data,that.data.commomOption);
                         chart2.setOption(option);
                     }
                 })
@@ -161,10 +161,9 @@ Component({
                 wx.request({
                     url: 'https://tjseai307.com/chartdata?chart=3',
                     success(res) {
-                        console.log(res.data)
                         that.data.chart3data = res.data;
                         chart3.hideLoading();
-                        var option = mergeDeep(that.data.commomOption, that.data.chart3data);
+                        var option = mergeDeep(that.data.chart3data, that.data.commomOption);
                         chart3.setOption(option);
                     }
                 })
@@ -185,10 +184,9 @@ Component({
                 wx.request({
                     url: 'https://tjseai307.com/chartdata?chart=4',
                     success(res) {
-                        console.log(res.data);
                         that.data.chart4data = res.data;
                         chart4.hideLoading();
-                        var option = mergeDeep(that.data.commomOption, that.data.chart4data);
+                        var option = mergeDeep(that.data.chart4data, that.data.commomOption);
                         chart4.setOption(option);
                     }
                 })
