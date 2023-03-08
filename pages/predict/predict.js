@@ -17,7 +17,7 @@ Component({
 
             grid: {
                 //控制margin
-                y: 35
+                top:35
             },
             dataZoom: [
                 // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
@@ -41,7 +41,7 @@ Component({
                 textStyle: {
                     rich: {
                         a: {
-                            color: 'blue',
+                            color: 'black',
                             fontSize:12,
                             rotate: 90
                         },
@@ -251,6 +251,8 @@ Component({
                 let option = mergeDeep(this.data.commomOption, this.data.chartDataMainOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
+                option.grid.left=40;
+                option.grid.right=60;
                 //旋转图表的骚操作
                 delete(option.yAxis.data);
 

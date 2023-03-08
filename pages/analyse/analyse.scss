@@ -1,8 +1,14 @@
 .wrapper {
     margin: 16rpx;
     display: block;
+    border-radius: 16rpx;
+    overflow: hidden;
 }
 
 .container{
     height: 400rpx;
+}
+
+page{
+    background-color: rgb(246,246,246);
 }

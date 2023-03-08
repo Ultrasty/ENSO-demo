@@ -42,11 +42,24 @@ Component({
         commomOption: {
             grid: {
                 top: 20,
-                bottom:45
+                bottom:45,
+                right: 0,
+                left:35
             },
             legend:{
                 bottom: 0
-            }
+            },
+            textStyle: {
+                rich: {
+                    a: {
+                        color: 'black',
+                        fontSize:10,
+                    },
+                }
+            },
+            formatter: function (name) {
+                return '{a|' + name + "}";
+            },
         }
     },
     methods: {
