@@ -17,7 +17,8 @@ Component({
 
             grid: {
                 //控制margin
-                top:35
+                top:35,
+                right:20
             },
             dataZoom: [
                 // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
