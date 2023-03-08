@@ -21,6 +21,10 @@ Component({
         this.initChart4();
     },
     data: {
+        chart2selection:{
+            availableMonth:[1,2,3,4,10],
+            currentMonth:0
+        },
         //Collapse 折叠面板 展开的栏的列表
         activeValues: [0, 1, 2, 3],
         ec1: {
@@ -63,6 +67,14 @@ Component({
         }
     },
     methods: {
+        nextMonth(){
+            this.data.chart2selection.currentMonth = (this.data.chart2selection.currentMonth + 1) % this.data.chart2selection.availableMonth.length;
+            this.initChart2();
+        },
+        lastMonth(){
+            this.data.chart2selection.currentMonth = (this.data.chart2selection.currentMonth + this.data.chart2selection.availableMonth.length - 1) % this.data.chart2selection.availableMonth.length;
+            this.initChart2();
+        },
         //用户分析页的Collapse 折叠面板 展开项列表
         handleChange(e) {
             this.setData({
@@ -123,7 +135,7 @@ Component({
                 chart2.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'https://tjseai307.com/chartdata?chart=2&year=2022&month=1',
+                    url: 'https://tjseai307.com/chartdata?chart=2&year=2022&month=' +this.data.chart2selection.availableMonth[this.data.chart2selection.currentMonth].toString(),
                     success(res) {
                         console.log(res.data)
                         that.data.chart2data = res.data;

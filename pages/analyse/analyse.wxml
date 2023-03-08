@@ -10,8 +10,8 @@
 
         <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
             <view style="display: grid;grid-template-columns: repeat(2, 1fr);gap: 32rpx;">
-                <t-button block icon="caret-left" content="上一月" size="small"></t-button>
-                <t-button block icon="caret-right" content="下一月" size="small"></t-button>
+                <t-button bindtap="lastMonth" block icon="caret-left" content="上一月" size="small"></t-button>
+                <t-button bindtap="nextMonth" block icon="caret-right" content="下一月" size="small"></t-button>
             </view>
             <view class="container">
                 <ec-canvas id="chart2" ec="{{ ec2 }}"></ec-canvas>
