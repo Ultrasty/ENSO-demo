@@ -33,7 +33,7 @@
     </view>
 </view>
 
-<view class="subtitle">结果描述：{{chartStyle}}</view>
+<view class="subtitle">结果描述：</view>
 
 <view bind:tap="test" style="border: 8rpx solid rgb(200,200,200);margin: 20rpx;padding: 40rpx 20rpx 40rpx 20rpx;">在未来6个月，冷异常逐渐减弱，拉尼娜现象逐渐消亡，之后逐渐转入暖异常</view>
 

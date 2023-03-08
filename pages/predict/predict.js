@@ -13,7 +13,45 @@ Component({
     data: {
 
         chartStyle:"",
+        commomOption : {
 
+            grid: {
+                //控制margin
+                y: 35
+            },
+            dataZoom: [
+                // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
+            ],
+            title: {
+                left: 'center',
+                textStyle: {
+                    fontSize: 12
+                }
+            },
+            yAxis: {
+                splitLine: {
+                    lineStyle: {
+                        type: 'dashed'
+                    }
+                }
+            },
+            legend: {
+                data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
+                bottom: 0,
+                textStyle: {
+                    rich: {
+                        a: {
+                            color: 'blue',
+                            fontSize:12,
+                            rotate: 90
+                        },
+                    }
+                },
+                formatter: function (name) {
+                    return '{a|' + name + "}";
+                },
+            }
+        },
         //保存图表实例
         chartRotated: null,
         chartMain: null,
@@ -185,48 +223,9 @@ Component({
                 });
                 canvas.setChart(this.chartMain);
 
-                var option = {
-
-                    grid: {
-                        //控制margin
-                        y: 35
-                    },
-                    dataZoom: [
-                        // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
-                    ],
-                    title: {
-                        left: 'center',
-                        textStyle: {
-                            fontSize: 12
-                        }
-                    },
-                    yAxis: {
-                        splitLine: {
-                            lineStyle: {
-                                type: 'dashed'
-                            }
-                        }
-                    },
-                    legend: {
-                        data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
-                        bottom: 0,
-                        textStyle: {
-                            rich: {
-                                a: {
-                                    color: 'blue',
-                                    fontSize:12,
-                                    rotate: 90
-                                },
-                            }
-                        },
-                        formatter: function (name) {
-                            return '{a|' + name + "}";
-                        },
-                    }
-                };
 
                 //将图表【样式配置】和【数据配置】合并成【最终配置】
-                option = mergeDeep(option, this.data.chartDataMainOption);
+                let option = mergeDeep(this.data.commomOption, this.data.chartDataMainOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 //旋转图表的骚操作
@@ -247,48 +246,9 @@ Component({
                 });
                 canvas.setChart(this.chartRotated);
 
-                var option = {
-
-                    grid: {
-                        //控制margin
-                        y: 35
-                    },
-                    dataZoom: [
-                        // 本来是用来水平移动图表的，但是有概率会闪退，遂放弃
-                    ],
-                    title: {
-                        left: 'center',
-                        textStyle: {
-                            fontSize: 12
-                        }
-                    },
-                    yAxis: {
-                        splitLine: {
-                            lineStyle: {
-                                type: 'dashed'
-                            }
-                        }
-                    },
-                    legend: {
-                        data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
-                        bottom: 0,
-                        textStyle: {
-                            rich: {
-                                a: {
-                                    color: 'blue',
-                                    fontSize:12,
-                                    rotate: 90
-                                },
-                            }
-                        },
-                        formatter: function (name) {
-                            return '{a|' + name + "}";
-                        },
-                    }
-                };
 
                 //将图表【样式配置】和【数据配置】合并成【最终配置】
-                option = mergeDeep(option, this.data.chartDataMainOption);
+                let option = mergeDeep(this.data.commomOption, this.data.chartDataMainOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 //旋转图表的骚操作
