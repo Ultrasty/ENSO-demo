@@ -157,6 +157,7 @@ Component({
             //懒加载，保证绘图的时候，canvas的大小是正确的
             //设300是因为popup的动画时间是240
             setTimeout(() => {
+                this.setData({chartStyle:""});
                 this.initChartRotated();
             }, 300)
 
@@ -293,7 +294,7 @@ Component({
                 //旋转图表的骚操作
                 delete(option.yAxis.data);
 
-                this.setData({chartStyle:"transform: rotate(90deg)"});
+                this.setData({chartStyle:"transform: rotate(90deg) translateX(-50vw) translateY(-50vw);transform-origin:left;"});
                 this.chartRotated.setOption(option);
                 return this.chartRotated;
             })
