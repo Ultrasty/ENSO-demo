@@ -2,12 +2,17 @@
 <view class="wrapper">
     <t-collapse value="{{activeValues}}" bind:change="handleChange">
         <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
+
             <view class="container">
                 <ec-canvas id="chart1" ec="{{ ec1 }}"></ec-canvas>
             </view>
         </t-collapse-panel>
 
         <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
+            <view style="display: grid;grid-template-columns: repeat(2, 1fr);gap: 32rpx;">
+                <t-button block icon="caret-left" content="上一月" size="small"></t-button>
+                <t-button block icon="caret-right" content="下一月" size="small"></t-button>
+            </view>
             <view class="container">
                 <ec-canvas id="chart2" ec="{{ ec2 }}"></ec-canvas>
             </view>
