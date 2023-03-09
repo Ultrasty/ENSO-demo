@@ -7,7 +7,7 @@ if (debug) {
     var Mock = require("./utils/mock.mp.js");
     // var Mock = require("./utils/WxMock.js"); 
     Mock.setup({
-        timeout: '0-1500'
+        timeout: '0-1000'
     })
 
     Mock.mock('https://tjseai307.com/chartdata?chart=1', {
