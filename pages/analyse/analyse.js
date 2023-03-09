@@ -164,6 +164,7 @@ Component({
                         that.data.chart3data = res.data;
                         chart3.hideLoading();
                         var option = mergeDeep(that.data.chart3data, that.data.commomOption);
+                        console.log(option);
                         chart3.setOption(option);
                     }
                 })
