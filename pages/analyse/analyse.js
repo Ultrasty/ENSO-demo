@@ -45,13 +45,16 @@ Component({
         chart4data: {},
         commomOption: {
             grid: {
-                top: 20,
+                top: 40,
                 bottom:100,
                 right: 0,
-                left:35
+                left:60
             },
             legend:{
                 bottom: 0
+            },
+            yAxis:{
+                name: 'Nino 3.4 Index',
             },
             textStyle: {
                 rich: {
@@ -168,8 +171,6 @@ Component({
                         //     let scope=["2022年1月起报预报误差","2022年2月起报预报误差","2022年3月起报预报误差","2022年4月起报预报误差","2022年10月起报预报误差"];
                         //     return scope[value];
                         // }
-                        option.grid.top=40;
-                        option.grid.left=60;
                         chart3.setOption(option);
                     }
                 })

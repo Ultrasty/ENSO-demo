@@ -315,7 +315,6 @@ if (debug) {
         },
         yAxis: {
             type: 'value',
-            name: 'Nino 3.4 Index',
         },
 
         series: [{
@@ -349,27 +348,25 @@ if (debug) {
     Mock.mock('https://tjseai307.com/chartdata?chart=4', {
         xAxis: {
             type: 'category',
-            data: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan"]
-        },
-        yAxis: {
-            type: 'value'
-        },
-        legend: {
-            data: ['2022年1月起报结果', '2022年2月起报结果'],
-        },
-        series: [{
-                name: "2022年1月起报结果",
-                data: [-1.174209315, -0.993191958, -0.19134674, -0.188610001, 0.105001105, -0.181135163, -0.649433319, -1.039655168, -1.023838987, -0.643442209, -0.706740268, -1.201603068, -1.320892477, -0.434853224],
-                type: 'line'
-            },
-            {
-                name: "2022年2月起报结果",
-                'data|13': [function () {
-                    return Mock.Random.float(-1.5, 1)
-                }],
-                type: 'line'
+            data: ['2022年1月起报结果', '2022年2月起报结果', '2022年3月起报结果', '2022年4月起报结果', '2022年10月起报结果'],
+            axisLabel:{
+                rotate: 45
             }
-        ]
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: [-0.434853224
+                ,-0.001281489
+                ,0.075417473
+                ,0.142720704
+                ,0.908919254
+                ],
+              type: 'line'
+            }
+          ]
     })
 
     Mock.mock('https://tjseai307.com/enso/findByYearAndMonth?year=2022&month=10', {
