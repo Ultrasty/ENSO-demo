@@ -47,14 +47,14 @@ Component({
             grid: {
                 top: 40,
                 bottom:100,
-                right: 0,
-                left:60
+                right: 5,
+                left:50
             },
             legend:{
                 bottom: 0
             },
             yAxis:{
-                name: 'Nino 3.4 Index',
+                name: '        Niño 3.4 Index',
             },
             textStyle: {
                 rich: {
