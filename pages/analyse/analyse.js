@@ -10,6 +10,9 @@ let chart3 = null;
 let chart4 = null;
 
 Component({
+    options: {
+        styleIsolation: 'shared'
+    },
     ready() {
         this.ecComponent1 = this.selectComponent("#chart1");
         this.ecComponent2 = this.selectComponent("#chart2");

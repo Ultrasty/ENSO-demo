@@ -5,6 +5,9 @@ import {
 import * as echarts from '../../ec-canvas/echarts';
 
 Component({
+    options: {
+        styleIsolation: 'shared'
+    },
     ready() {
         this.ecComponentMain = this.selectComponent('#chartMain');
         this.ecComponentRotated = this.selectComponent('#chartRotated');

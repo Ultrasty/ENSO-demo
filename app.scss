@@ -1,15 +1,21 @@
-
-.t-collapse-panel__title{
-    .t-cell__title-text{
+.t-collapse-panel__title {
+    .t-cell__title-text {
         display: inline-block;
-        background-color: rgb(242,243,255);
+        background-color: rgb(242, 243, 255);
         border-radius: 40rpx;
         padding: 0rpx 20rpx 0rpx 20rpx;
     }
 }
 
 
-page{
+page {
     // background-color: rgb(246,246,246);
-    background-color: rgb(233,233,233);
+    background-color: rgb(233, 233, 233);
+}
+
+.explanation {
+    border-radius: 32rpx;
+    border: 8rpx solid rgb(200, 200, 200);
+    margin: 20rpx;
+    padding: 40rpx 20rpx 40rpx 20rpx;
 }

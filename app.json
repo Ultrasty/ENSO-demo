@@ -22,7 +22,7 @@
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "同济大学ENSO预测与分析",
+        "navigationBarTitleText": "同济大学人工智能＋大气海洋研究团队ENSO预测与分析",
         "navigationBarTextStyle": "black"
     },
     "sitemapLocation": "sitemap.json"

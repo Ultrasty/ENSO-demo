@@ -1,14 +1,15 @@
 <t-navbar style="--td-navbar-padding-top:0;--td-navbar-right:0px;" title="不同起报月份的ENSO预测分析" t-class-title="nav-title" />
-<view class="wrapper">
+<view>
     <t-collapse value="{{activeValues}}" bind:change="handleChange">
-        <t-collapse-panel header="预报结果逐月对比" value="{{0}}" expandIcon>
 
+        <t-collapse-panel class="wrapper" header="预报结果逐月对比" value="{{0}}" expandIcon>
             <view class="container">
                 <ec-canvas id="chart1" ec="{{ ec1 }}"></ec-canvas>
             </view>
+            <view class="explanation">此处为预测结果汇总折线图。从图中可知除22年3月-6月外，其他月份的预测结果与官方记录差异不大。尤其是10月起报结果，几乎与官方记录重合。22年3月-6月预测误差较大可能与近年来连续冷（拉尼娜）事件较难预测有关</view>
         </t-collapse-panel>
 
-        <t-collapse-panel header="预报结果误差柱状图" value="{{1}}" expandIcon>
+        <t-collapse-panel class="wrapper" header="预报结果误差柱状图" value="{{1}}" expandIcon>
             <view style="display: grid;grid-template-columns: repeat(2, 1fr);gap: 32rpx;">
                 <t-button bindtap="lastMonth" block icon="caret-left" content="上一月" size="small"></t-button>
                 <t-button bindtap="nextMonth" block icon="caret-right" content="下一月" size="small"></t-button>
@@ -16,20 +17,24 @@
             <view class="container">
                 <ec-canvas id="chart2" ec="{{ ec2 }}"></ec-canvas>
             </view>
+            <view class="explanation">此处的5副图分别为从2022年1、2、3、4、10月起报的预测结果（蓝色）、官方记录结果（绿色）及二者绝对差值图（柱状）。</view>
         </t-collapse-panel>
 
-        <t-collapse-panel header="误差分析箱型图" value="{{2}}" expandIcon>
+        <t-collapse-panel class="wrapper" header="误差分析箱型图" value="{{2}}" expandIcon>
             <view class="container">
                 <ec-canvas id="chart3" ec="{{ ec3 }}"></ec-canvas>
             </view>
+            <view class="explanation">此处为不同起报月份的绝对差值分布箱型图。从图中可以看出绝对差值越来越小（箱子越来越窄），模型存在一定程度的春季预报障碍，10月份起报不受其影响。</view>
         </t-collapse-panel>
 
 
-        <t-collapse-panel header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
+        <t-collapse-panel class="wrapper" header="预报结果逐月相关性分析" value="{{3}}" expandIcon>
             <view class="container">
                 <ec-canvas id="chart4" ec="{{ ec4 }}"></ec-canvas>
             </view>
+            <view class="explanation">此处为不同起报月份的相关性技巧折线图。从图中可以看出呈增长趋势，尤其是从10月起报（已达到0.9相关系数技巧）。虽然10月起报的有效序列较短，但也能说明其不受春季预报障碍的影响。</view>
         </t-collapse-panel>
+
     </t-collapse>
     <!-- <t-button bind:tap="test">测试</t-button> -->
 </view>

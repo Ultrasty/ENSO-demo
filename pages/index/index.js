@@ -32,19 +32,19 @@ Component({
         //转发、分享到朋友圈、收藏时的回调函数
         onShareAppMessage: function (options) {
             return {
-                title: '同济大学ENSO预测与分析',
+                title: '同济大学人工智能＋大气海洋研究团队ENSO预测与分析',
                 imageUrl: '/imgs/nesdis-el-nino.jpg',
             }
         },
         onShareTimeline: function () {
             return {
-                title: '同济大学ENSO预测与分析',
+                title: '同济大学人工智能＋大气海洋研究团队ENSO预测与分析',
                 imageUrl: '/imgs/nesdis-el-nino.jpg',
             }
         },
         onAddToFavorites: function (options) {
             return {
-                title: '同济大学ENSO预测与分析',
+                title: '同济大学人工智能＋大气海洋研究团队ENSO预测与分析',
                 imageUrl: '/imgs/nesdis-el-nino.jpg',
             }
         },
