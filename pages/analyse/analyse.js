@@ -49,7 +49,7 @@ Component({
         commomOption: {
             grid: {
                 top: 40,
-                bottom:100,
+                bottom:140,
                 right: 5,
                 left:50
             },
