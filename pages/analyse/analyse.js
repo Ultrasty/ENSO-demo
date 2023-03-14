@@ -25,8 +25,8 @@ Component({
     },
     data: {
         chart2selection:{
-            availableMonth:[1,2,3,4,10],
-            currentMonth:1
+            availableMonth:[2,3,4,5,6,7,8,9,10,11,12,1],
+            currentMonth:0
         },
         //Collapse 折叠面板 展开的栏的列表
         activeValues: [0, 1, 2, 3],
@@ -88,25 +88,7 @@ Component({
             });
         },
         test() {
-            // this.initChart3();
-            // wx.request({
-            //     url: "https://tjseai307.com/chart5data",
-            //     success(res) {
-            //         wx.showToast({
-            //             title: JSON.stringify(res.data),
-            //             icon: 'success',
-            //             duration: 2000
-            //         })
-            //         console.log(res.data)
-            //     },
-            //     fail(res) {
-            //         wx.showToast({
-            //             title: '失败！',
-            //             icon: 'error',
-            //             duration: 2000
-            //         })
-            //     }
-            // })
+
         },
         initChart1() {
             this.ecComponent1.init((canvas, width, height, dpr) => {
@@ -147,6 +129,7 @@ Component({
                         that.data.chart2data = res.data;
                         chart2.hideLoading();
                         var option = mergeDeep(that.data.chart2data,that.data.commomOption);
+                        option.grid.bottom = 50;
                         chart2.setOption(option);
                     }
                 })
