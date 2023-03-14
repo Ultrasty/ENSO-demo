@@ -129,7 +129,7 @@ Component({
                         that.data.chart2data = res.data;
                         chart2.hideLoading();
                         var option = mergeDeep(that.data.chart2data,that.data.commomOption);
-                        option.grid.bottom = 50;
+                        option.grid.bottom = 70;
                         chart2.setOption(option);
                     }
                 })
