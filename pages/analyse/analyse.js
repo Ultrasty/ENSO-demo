@@ -153,10 +153,11 @@ Component({
                         that.data.chart3data = res.data;
                         chart3.hideLoading();
                         var option = mergeDeep(that.data.chart3data, that.data.commomOption);
-                        // option.xAxis.axisLabel.formatter = function(value) {
-                        //     let scope=["2022年1月起报预报误差","2022年2月起报预报误差","2022年3月起报预报误差","2022年4月起报预报误差","2022年10月起报预报误差"];
-                        //     return scope[value];
-                        // }
+                        option.grid.bottom = 180;
+                        option.xAxis.axisLabel.formatter = function(value) {
+                            let scope=["误差分析箱型图"];
+                            return scope[value];
+                        }
                         chart3.setOption(option);
                     }
                 })
