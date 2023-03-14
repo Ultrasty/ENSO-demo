@@ -40,7 +40,7 @@ Component({
                 }
             },
             legend: {
-                data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-MC', 'EnsembleForecast'],
+                data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-GTC', 'ENSO-MC', 'EnsembleForecast'],
                 bottom: 0,
                 textStyle: {
                     rich: {
@@ -61,28 +61,31 @@ Component({
         chartMain: null,
         chartDataMainOption: {
             xAxis: {
-                data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
-            },
-            yAxis: {
-                data: ["Oct-22", "Nov-22", "Dec-22", "Jan-23", "Feb-23", "Mar-23", "Apr-23", "May-23", "Jun-23", "Jul-23", "Aug-23", "Sep-23", "Oct-23", "Nov-23", "Dec-23", "Jan-24", "Feb-24"]
+                data: ["Feb-23","Mar-23","Apr-23","May-23","Jun-23","Jul-23","Aug-23","Sep-23","Oct-23","Nov-23","Dec-23","Jan-24","Feb-24","Mar-24","Apr-24","May-24","Jun-24","Jul-24"]
             },
             series: [{
                     name: 'ENSO-Cross',
-                    data: [-0.85, -0.74, -0.60, -0.46, -0.30, -0.19, -0.14, 0.19, 0.59, 0.88, 1.11, 1.27, 1.34, 1.45, 1.55, 1.57, 1.43],
+                    data: [-0.44 ,-0.29 ,-0.15 ,0.23 ,0.46 ,0.70 ,0.94 ,1.12 ,1.14 ,1.52 ,1.69 ,1.81 ,1.70 ,1.42 ,0.94 ,0.67 ,0.37 ,0.27],
                     type: 'line',
                 },
                 {
                     name: 'ENSO-ASC',
-                    data: [-0.98, -0.67, -0.74, -0.93, -0.35, 0.33, 0.42, 0.48, 0.19, -0.25, -0.49, -0.71, -0.35, 0.05, 0.33, 1.41, 1.28],
+                    data: [-0.25 ,0.34,0.41,0.45,0.19,-0.22,-0.44,-0.67,-0.32,0.14,0.41,1.5,1.33,0.97,0.53,0.41,0.18,-0.76],
                     type: 'line',
-                }, {
+                }, 
+                {
+                    name: 'ENSO-GTC',
+                    data:[-0.60 ,-0.33 ,-0.06 ,0.13 ,0.18 ,0.12 ,0.09 ,0.12 ,0.16 ,0.33 ,0.14 ,0.29 ,0.14 ,-0.04 ,-0.17 ,0.01 ,-0.05 ,-0.12 ],
+                    type:'line'
+                },
+                {
                     name: 'ENSO-MC',
-                    data: [-1.17, -0.96, -0.95, -0.96, -0.61, -0.23, -0.20, -0.10, -0.23, -0.28, -0.28, -0.28, -0.06, 0.20, 0.37, 0.93, 0.80],
+                    data: [-0.84 ,-1.11 ,-1.45 ,-1.34 ,-1.10 ,-0.69 ,-0.28 ,-0.13 ,-0.11 ,-0.12 ,-0.01 ,0.06 ,-0.17 ,-0.71 ,-1.25 ,-1.20 ,-0.94 ,-0.57 ],
                     type: 'line',
                 }, {
                     name: 'EnsembleForecast',
-                    data: [-0.92, -0.70, -0.67, -0.69, -0.33, 0.07, 0.14, 0.34, 0.39, 0.32, 0.31, 0.28, 0.49, 0.75, 0.94, 1.49, 1.36],
-                    type: 'line',
+                    data: [-0.53 ,-0.35 ,-0.31 ,-0.13 ,-0.07 ,-0.02 ,0.08 ,0.11 ,0.22 ,0.47 ,0.56 ,0.92 ,0.75 ,0.41 ,0.01 ,-0.03 ,-0.11 ,-0.29 ],
+                    type: 'line'
                 }
             ]
         },
@@ -229,11 +232,10 @@ Component({
 
 
                 //将图表【样式配置】和【数据配置】合并成【最终配置】
-                let option = mergeDeep(this.data.commomOption, this.data.chartDataMainOption);
+                let option = mergeDeep(this.data.chartDataMainOption,this.data.commomOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
-                //旋转图表的骚操作
-                delete(option.yAxis.data);
+
                 // this.setData({chartStyle:"transform: rotate(90deg)"});
                 this.chartMain.setOption(option);
                 
@@ -252,13 +254,12 @@ Component({
 
 
                 //将图表【样式配置】和【数据配置】合并成【最终配置】
-                let option = mergeDeep(this.data.commomOption, this.data.chartDataMainOption);
+                let option = mergeDeep(this.data.chartDataMainOption,this.data.commomOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 option.grid.left=40;
                 option.grid.right=60;
-                //旋转图表的骚操作
-                delete(option.yAxis.data);
+                option.series[option.series.length-1].itemStyle = { normal: {label : {show: true}}};
 
                 this.setData({chartStyle:"transform: rotate(90deg) translateX(-50vw) translateY(-50vw);transform-origin:left;"});
                 this.chartRotated.setOption(option);
