@@ -181,6 +181,7 @@ Component({
                         that.data.chart4data = res.data;
                         chart4.hideLoading();
                         var option = mergeDeep(that.data.chart4data, that.data.commomOption);
+                        option.grid.left = 80;
                         chart4.setOption(option);
                     }
                 })
