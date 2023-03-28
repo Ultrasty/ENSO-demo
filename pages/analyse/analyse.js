@@ -25,8 +25,8 @@ Component({
     },
     data: {
         chart2selection:{
-            availableMonth:[2,3,4,5,6,7,8,9,10,11,12,1],
-            currentMonth:0
+            availableData:[],
+            currentData:0
         },
         //Collapse 折叠面板 展开的栏的列表
         activeValues: [0, 1, 2, 3],
@@ -74,12 +74,12 @@ Component({
     },
     methods: {
         nextMonth(){
-            this.data.chart2selection.currentMonth = (this.data.chart2selection.currentMonth + 1) % this.data.chart2selection.availableMonth.length;
-            this.initChart2();
+            this.data.chart2selection.currentData = (this.data.chart2selection.currentData + 1) % this.data.chart2selection.availableData.length;
+            this.initChart2again();
         },
         lastMonth(){
-            this.data.chart2selection.currentMonth = (this.data.chart2selection.currentMonth + this.data.chart2selection.availableMonth.length - 1) % this.data.chart2selection.availableMonth.length;
-            this.initChart2();
+            this.data.chart2selection.currentData = (this.data.chart2selection.currentData + this.data.chart2selection.availableData.length - 1) % this.data.chart2selection.availableData.length;
+            this.initChart2again();
         },
         //用户分析页的Collapse 折叠面板 展开项列表
         handleChange(e) {
@@ -101,7 +101,7 @@ Component({
                 chart1.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'https://tjseai307.com/chartdata?chart=1',
+                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart1?model=ef',
                     success(res) {
                         that.data.chart1data = res.data;
                         chart1.hideLoading();
@@ -124,15 +124,33 @@ Component({
                 chart2.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'https://tjseai307.com/chartdata?chart=2&year=2022&month=' +this.data.chart2selection.availableMonth[this.data.chart2selection.currentMonth].toString(),
+                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart2?model=ef',
                     success(res) {
-                        that.data.chart2data = res.data;
+                        that.data.chart2selection.availableData = res.data;
+                        that.data.chart2data = that.data.chart2selection.availableData[0];
                         chart2.hideLoading();
                         var option = mergeDeep(that.data.chart2data,that.data.commomOption);
                         option.grid.bottom = 70;
                         chart2.setOption(option);
                     }
                 })
+                return chart2;
+            })
+        },
+        initChart2again() {
+            this.ecComponent2.init((canvas, width, height, dpr) => {
+                chart2 = echarts.init(canvas, null, {
+                    width: width,
+                    height: height,
+                    devicePixelRatio: dpr // 像素
+                });
+                canvas.setChart(chart2);
+
+                this.data.chart2data = this.data.chart2selection.availableData[this.data.chart2selection.currentData];
+                var option = mergeDeep(this.data.chart2data,this.data.commomOption);
+                option.grid.bottom = 70;
+                chart2.setOption(option);
+
                 return chart2;
             })
         },
@@ -148,12 +166,13 @@ Component({
                 chart3.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'https://tjseai307.com/chartdata?chart=3',
+                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart3?model=ef',
                     success(res) {
                         that.data.chart3data = res.data;
                         chart3.hideLoading();
                         var option = mergeDeep(that.data.chart3data, that.data.commomOption);
                         option.grid.bottom = 180;
+                        option.xAxis.axisLabel = {};
                         option.xAxis.axisLabel.formatter = function(value) {
                             let scope=["误差分析箱型图"];
                             return scope[value];
