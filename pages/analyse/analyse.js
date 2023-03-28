@@ -195,7 +195,7 @@ Component({
                 chart4.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'https://tjseai307.com/chartdata?chart=4',
+                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart4?model=ef',
                     success(res) {
                         that.data.chart4data = res.data;
                         chart4.hideLoading();
