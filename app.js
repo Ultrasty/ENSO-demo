@@ -878,6 +878,6 @@ App({
         // })
     },
     globalData: {
-
+        baseUrl: 'https://www.tjensoprediction.com:8888'
     }
 })

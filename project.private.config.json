@@ -3,7 +3,7 @@
     "projectname": "ENSO-demo",
     "setting": {
         "compileHotReLoad": true,
-        "urlCheck": false
+        "urlCheck": true
     },
-    "libVersion": "2.30.2"
+    "libVersion": "2.25.3"
 }

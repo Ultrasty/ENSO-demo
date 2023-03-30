@@ -3,6 +3,8 @@ import {
     mergeDeep
 } from '../../utils/util';
 
+var app = getApp();
+
 //保存图表实例
 let chart1 = null;
 let chart2 = null;
@@ -101,7 +103,7 @@ Component({
                 chart1.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart1?model=ef',
+                    url: app.globalData.baseUrl+'/enso//analyzePage/chart1?model=ef',
                     success(res) {
                         that.data.chart1data = res.data;
                         chart1.hideLoading();
@@ -124,7 +126,7 @@ Component({
                 chart2.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart2?model=ef',
+                    url:app.globalData.baseUrl+ '/enso//analyzePage/chart2?model=ef',
                     success(res) {
                         that.data.chart2selection.availableData = res.data;
                         that.data.chart2data = that.data.chart2selection.availableData[0];
@@ -166,7 +168,7 @@ Component({
                 chart3.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart3?model=ef',
+                    url: app.globalData.baseUrl+'/enso//analyzePage/chart3?model=ef',
                     success(res) {
                         that.data.chart3data = res.data;
                         chart3.hideLoading();
@@ -195,7 +197,7 @@ Component({
                 chart4.showLoading()
                 let that = this;
                 wx.request({
-                    url: 'http://192.168.50.122:8080/enso/findAllByModel/chart4?model=ef',
+                    url: app.globalData.baseUrl+'/enso//analyzePage/chart4?model=ef',
                     success(res) {
                         that.data.chart4data = res.data;
                         chart4.hideLoading();

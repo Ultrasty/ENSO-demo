@@ -4,6 +4,8 @@ import {
 
 import * as echarts from '../../ec-canvas/echarts';
 
+var app = getApp();
+
 Component({
     options: {
         styleIsolation: 'shared'
@@ -40,7 +42,7 @@ Component({
                 }
             },
             legend: {
-                data: ['ENSO-Cross', 'ENSO-ASC', 'ENSO-GTC', 'ENSO-MC', 'EnsembleForecast'],
+                data: ['EnsembleForecast','ENSO-Cross', 'ENSO-ASC', 'ENSO-GTC', 'ENSO-MC'],
                 bottom: 0,
                 textStyle: {
                     rich: {
@@ -197,7 +199,7 @@ Component({
                 });
 
                 wx.request({
-                    url: 'https://tjseai307.com/enso/findByYearAndMonth?year=' + this.data.month.split('-')[0] + '&month=' + parseInt(this.data.month.split('-')[1]).toString(),
+                    url: app.globalData.baseUrl+'/enso/mainPage?year=' + this.data.month.split('-')[0] + '&month=' + parseInt(this.data.month.split('-')[1]).toString(),
                     success: (res) => {
                         this.data.chartDataMainOption = res.data;
                         //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
@@ -206,7 +208,7 @@ Component({
                         let option = mergeDeep(this.data.chartDataMainOption, this.data.commomOption);
                         //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                         option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
-
+                        option.series[0].name='EnsembleForecast';
                         // this.setData({chartStyle:"transform: rotate(90deg)"});
                         this.chartMain.setOption(option);
                     }
@@ -233,14 +235,14 @@ Component({
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
                 option.grid.left = 40;
                 option.grid.right = 60;
-                option.series[option.series.length - 1].itemStyle = {
+                option.series[0].itemStyle = {
                     normal: {
                         label: {
                             show: true
                         }
                     }
                 };
-
+                option.series[0].name='EnsembleForecast';
                 this.setData({
                     chartStyle: "transform: rotate(90deg) translateX(-50vw) translateY(-50vw);transform-origin:left;"
                 });
