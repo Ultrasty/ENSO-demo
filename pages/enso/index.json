@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "predict": "../predict/predict",
+        "analyse": "../analyse/analyse"
+    }
+}

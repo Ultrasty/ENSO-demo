@@ -1,11 +1,11 @@
-// pages/index/index.js
+// pages/seaice/seaice.js
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        img1 :"https://www.tjensoprediction.com/imgs/nesdis-el-nino.jpg"
+
     },
 
     /**

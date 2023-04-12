@@ -1,15 +1,11 @@
-<!-- 预测页面 -->
-<view wx:if="{{value=='predict'}}">
-    <predict id="predict"></predict>
-</view>
-
-
-<!-- 分析页面 -->
-<view wx:if="{{value=='analyse'}}">
-    <analyse></analyse>
-</view>
-
-<!-- 底部标签栏 tab bar -->
-<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
-    <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}"> {{item.label}} </t-tab-bar-item>
-</t-tab-bar>
+<!--pages/index/index.wxml-->
+<t-grid class="block" column="{{4}}" theme="card">
+  <t-grid-item text="标题文字" image="{{img1}}" />
+  <t-grid-item text="标题文字" image="{{img2}}" />
+  <t-grid-item text="标题文字" image="{{img3}}" />
+  <t-grid-item text="最多五个字" image="{{img1}}" />
+  <t-grid-item text="标题文字" image="{{img1}}" />
+  <t-grid-item text="标题文字" image="{{img3}}" />
+  <t-grid-item text="标题文字" image="{{img2}}" />
+  <t-grid-item text="最多五个字" image="{{img2}}" />
+</t-grid>

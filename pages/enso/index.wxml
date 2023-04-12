@@ -1,0 +1,15 @@
+<!-- 预测页面 -->
+<view wx:if="{{value=='predict'}}">
+    <predict id="predict"></predict>
+</view>
+
+
+<!-- 分析页面 -->
+<view wx:if="{{value=='analyse'}}">
+    <analyse></analyse>
+</view>
+
+<!-- 底部标签栏 tab bar -->
+<t-tab-bar value="{{value}}" bindchange="onChange" theme="tag" split="{{false}}">
+    <t-tab-bar-item wx:for="{{list}}" wx:key="index" value="{{item.value}}"> {{item.label}} </t-tab-bar-item>
+</t-tab-bar>
