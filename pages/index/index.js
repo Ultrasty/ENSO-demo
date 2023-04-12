@@ -5,7 +5,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        img1 :"https://www.tjensoprediction.com/imgs/nesdis-el-nino.jpg"
+        img1 :"https://www.tjensoprediction.com/imgs/nesdis-el-nino.jpg",
+        img2 :"https://www.tjensoprediction.com/imgs/seaice.jpg",
+    },
+
+    gotoPage(){
+        wx.navigateTo({
+          url: '/pages/enso/index',
+        })
     },
 
     /**
