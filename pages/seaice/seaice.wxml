@@ -19,7 +19,13 @@
         </view>
     </t-popup>
 
-    <view style="margin-top: 16rpx;" class="subtitle">选择年份：{{month}}</view>
+    <view style="margin-top: 16rpx;" class="subtitle">当前年份：{{year}}</view>
+
+    <t-cell title="选择年份" arrow hover note="{{cityText}}" bind:click="onYearPicker" />
+
+    <t-picker visible="{{cityVisible}}" value="{{cityValue}}" data-key="city" title="选择年份" cancelBtn="取消" confirmBtn="确认" bindchange="onPickerChange" bindpick="onColumnChange" bindcancel="onPickerCancel">
+        <t-picker-item options="{{citys}}" />
+    </t-picker>
 
     <view class="subtitle">预测结果（点击图表放大）：</view>
     <!-- 预测结果 chartMain -->
@@ -31,6 +37,6 @@
 
     <view class="subtitle">结果描述：</view>
 
-    <view class = "explanation">2023年9月SIE极小值预测为4.4133，相较于2022年观测偏低，2023年海冰范围预计将比2022年整体偏少。</view>
+    <view class="explanation">2023年9月SIE极小值预测为4.4133，相较于2022年观测偏低，2023年海冰范围预计将比2022年整体偏少。</view>
 
 </view>

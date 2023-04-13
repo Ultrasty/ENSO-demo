@@ -16,10 +16,18 @@ Component({
         this.initChartMain();
     },
     data: {
+        cityText: '',
+        cityValue: [],
+        citys: [
+            {
+                label: '2023',
+                value: '2023'
+            }
+        ],
+
 
         chartStyle: "",
         commomOption: {
-
             grid: {
                 //控制margin
                 top: 35,
@@ -42,7 +50,6 @@ Component({
                 }
             },
             legend: {
-                data: ['EnsembleForecast','ENSO-Cross', 'ENSO-ASC', 'ENSO-GTC', 'ENSO-MC'],
                 bottom: 0,
                 textStyle: {
                     rich: {
@@ -65,13 +72,6 @@ Component({
         cur: {},
         //PC使用canvas 2d会导致渲染层级错误，但移动端正常
         isPC: wx.getSystemInfoSync().platform == "devtools",
-        start: '2022',
-        end: '2023',
-        mode: '',
-        month: '2023-02',
-        year: '2022',
-        second: '10:00:00',
-        minute: '23:59',
         //预测 主图
         ecMain: {
             lazyLoad: true
@@ -79,9 +79,51 @@ Component({
         //预测 放大旋转图
         ecRotated: {
             lazyLoad: true
-        }
+        },
+
+        year: 2023
     },
     methods: {
+
+        onColumnChange(e) {
+            console.log('picker pick:', e);
+        },
+
+        onPickerChange(e) {
+            const {
+                key
+            } = e.currentTarget.dataset;
+            const {
+                value
+            } = e.detail;
+
+            console.log('picker change:', e.detail);
+            this.setData({
+                [`${key}Visible`]: false,
+                [`${key}Value`]: value,
+                [`${key}Text`]: value.join(' '),
+                year: value
+            });
+            this.initChartMain();
+        },
+
+        onPickerCancel(e) {
+            const {
+                key
+            } = e.currentTarget.dataset;
+            console.log(e, '取消');
+            console.log('picker1 cancel:');
+            this.setData({
+                [`${key}Visible`]: false,
+            });
+        },
+
+        onYearPicker() {
+            this.setData({
+                cityVisible: true
+            });
+        },
+
         //日期选择器
         showPicker(e) {
             const {
@@ -179,7 +221,7 @@ Component({
                 });
 
                 wx.request({
-                    url: app.globalData.baseUrl+'/enso/mainPage?year=' + this.data.month.split('-')[0] + '&month=' + parseInt(this.data.month.split('-')[1]).toString(),
+                    url: app.globalData.baseUrl + '/seaice/prediction?year=' + this.data.year,
                     success: (res) => {
                         this.data.chartDataMainOption = res.data;
                         //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
@@ -187,8 +229,7 @@ Component({
                         //将图表【样式配置】和【数据配置】合并成【最终配置】
                         let option = mergeDeep(this.data.chartDataMainOption, this.data.commomOption);
                         //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
-                        option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
-                        option.series[0].name='EnsembleForecast';
+                        option.title.text = this.data.year + '年海冰预测结果';
                         // this.setData({chartStyle:"transform: rotate(90deg)"});
                         this.chartMain.setOption(option);
                     }
@@ -212,17 +253,9 @@ Component({
                 //将图表【样式配置】和【数据配置】合并成【最终配置】
                 let option = mergeDeep(this.data.chartDataMainOption, this.data.commomOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
-                option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
+                option.title.text = this.data.year + '年海冰预测结果';
                 option.grid.left = 40;
                 option.grid.right = 60;
-                option.series[0].itemStyle = {
-                    normal: {
-                        label: {
-                            show: true
-                        }
-                    }
-                };
-                option.series[0].name='EnsembleForecast';
                 this.setData({
                     chartStyle: "transform: rotate(90deg) translateX(-50vw) translateY(-50vw);transform-origin:left;"
                 });
