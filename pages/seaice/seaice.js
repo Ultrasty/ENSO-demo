@@ -265,6 +265,26 @@ Component({
         },
         test() {
             console.log(parseInt(this.data.month.split('-')[1]))
-        }
+        },
+
+        //转发、分享到朋友圈、收藏时的回调函数
+        onShareAppMessage: function (options) {
+            return {
+                title: '同济大学人工智能＋大气海洋研究团队海冰预测',
+                imageUrl: 'https://www.tjensoprediction.com/imgs/seaice.jpg',
+            }
+        },
+        onShareTimeline: function () {
+            return {
+                title: '同济大学人工智能＋大气海洋研究团队海冰预测',
+                imageUrl: 'https://www.tjensoprediction.com/imgs/seaice.jpg',
+            }
+        },
+        onAddToFavorites: function (options) {
+            return {
+                title: '同济大学人工智能＋大气海洋研究团队海冰预测',
+                imageUrl: 'https://www.tjensoprediction.com/imgs/seaice.jpg',
+            }
+        },
     }
 })
