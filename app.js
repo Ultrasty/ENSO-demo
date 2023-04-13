@@ -10,6 +10,10 @@ if (debug) {
         timeout: '0-1000'
     })
 
+    Mock.mock('https://tjensoprediction.com/seaice/prediction?year=2022',{
+        
+    })
+
     // Mock.mock('https://tjseai307.com/chartdata?chart=1', {
     //     xAxis: {
     //         type: 'category'

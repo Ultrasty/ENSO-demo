@@ -9,9 +9,10 @@ Page({
         img2 :"https://www.tjensoprediction.com/imgs/seaice.jpg",
     },
 
-    gotoPage(){
+    gotoPage(e){
+        let PageList = ["/pages/enso/index","/pages/seaice/seaice"];
         wx.navigateTo({
-          url: '/pages/enso/index',
+          url: PageList[e.target.dataset.index],
         })
     },
 

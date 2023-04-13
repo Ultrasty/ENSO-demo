@@ -8,8 +8,8 @@
 
 
 <t-grid class="block" column="{{3}}" theme="card">
-  <t-grid-item bindtap="gotoPage" text="ENSO预测与分析" image="{{img1}}" />
-  <t-grid-item text="海冰预测" image="{{img2}}" />
+  <t-grid-item bindtap="gotoPage" data-index="0" text="ENSO预测与分析" image="{{img1}}" />
+  <t-grid-item bindtap="gotoPage" text="海冰预测" data-index="1" image="{{img2}}" />
   <t-grid-item text="敬请期待" icon="ellipsis" />
 </t-grid>
 

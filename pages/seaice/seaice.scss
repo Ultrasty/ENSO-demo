@@ -1,1 +1,31 @@
-/* pages/seaice/seaice.wxss */
+.subtitle {
+    // height: 50rpx;
+    // width: 300rpx;
+    // background: linear-gradient(to right, rgba(0, 0, 255,0.15), white);
+    background: rgb(242,243,255);
+    border-radius: 32rpx;
+    margin-left: 16rpx;
+    display: inline-block;
+    padding: 10rpx 30rpx 10rpx 30rpx;
+}
+
+.chartMain {
+    height: 600rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.chartRotated {
+    width: 100vh;
+    height: 95vw;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+
+.block {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    // border-radius: 16rpx;
+}
