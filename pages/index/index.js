@@ -65,10 +65,10 @@ Page({
 
     },
 
-    /**
-     * 用户点击右上角分享
-     */
-    onShareAppMessage() {
-
-    }
+    //转发、分享到朋友圈、收藏时的回调函数
+    onShareAppMessage: function (options) {
+        return {
+            title: '同济大学人工智能＋大气海洋研究团队气候预测与分析'
+        }
+    },
 })
