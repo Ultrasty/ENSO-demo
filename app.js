@@ -34,32 +34,26 @@ if (debug) {
         },
         series: [{
                 type: 'line',
-                smooth: true,
                 seriesLayoutBy: 'row'
             },
             {
                 type: 'line',
-                smooth: true,
                 seriesLayoutBy: 'row'
             },
             {
                 type: 'line',
-                smooth: true,
                 seriesLayoutBy: 'row'
             },
             {
                 type: 'line',
-                smooth: true,
                 seriesLayoutBy: 'row'
             },
             {
                 type: 'line',
-                smooth: true,
                 seriesLayoutBy: 'row'
             },
             {
                 type: 'line',
-                smooth: true,
                 seriesLayoutBy: 'row'
             }
         ]
