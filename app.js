@@ -1,7 +1,7 @@
 // app.js
 
 //是否使用mock数据
-let debug = true;
+let debug = false;
 
 if (debug) {
     var Mock = require("./utils/mock.mp.js");

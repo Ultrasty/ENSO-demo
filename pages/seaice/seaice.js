@@ -221,7 +221,7 @@ Component({
                 });
 
                 wx.request({
-                    url: app.globalData.baseUrl + '/seaice/prediction?year=' + this.data.year,
+                    url: app.globalData.baseUrl + '/ice/prediction?year=' + this.data.year,
                     success: (res) => {
                         this.data.chartDataMainOption = res.data;
                         //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
