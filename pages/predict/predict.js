@@ -178,9 +178,14 @@ Component({
                 });
 
                 wx.request({
-                    url: app.globalData.baseUrl+'/enso/mainPage?year=' + this.data.month.split('-')[0] + '&month=' + parseInt(this.data.month.split('-')[1]).toString(),
+                    url: app.globalData.baseUrl+'/enso/mainPage',
                     success: (res) => {
-                        this.data.chartDataMainOption = res.data;
+
+                        this.setData({start: res.data["availableMonth"][0]})
+                        this.setData({end: res.data["availableMonth"][res.data["availableMonth"].length - 1]})
+                        this.setData({month: res.data["availableMonth"][res.data["availableMonth"].length - 1]})
+
+                        this.data.chartDataMainOption = res.data["data"][this.data.end];
                         //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
                         this.chartMain.hideLoading();
                         //将图表【样式配置】和【数据配置】合并成【最终配置】
@@ -230,7 +235,8 @@ Component({
             })
         },
         test() {
-            console.log(parseInt(this.data.month.split('-')[1]))
+            console.log("test picker")
+            return "2023-06"
         }
     }
 })
