@@ -117,7 +117,7 @@ Component({
             });
 
             this.hidePicker();
-            this.initChartMain();
+            this.initChartMainAgain();
 
         },
         //日期选择器
@@ -185,6 +185,7 @@ Component({
                         this.setData({end: res.data["availableMonth"][res.data["availableMonth"].length - 1]})
                         this.setData({month: res.data["availableMonth"][res.data["availableMonth"].length - 1]})
 
+                        this.setData({ensoData:res.data})
                         this.data.chartDataMainOption = res.data["data"][this.data.end];
                         //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
                         this.chartMain.hideLoading();
@@ -198,6 +199,34 @@ Component({
                     }
                 })
 
+
+                return this.chartMain;
+            })
+        },
+        initChartMainAgain() {
+            this.ecComponentMain.init((canvas, width, height, dpr) => {
+
+                this.chartMain = echarts.init(canvas, null, {
+                    width: width,
+                    height: height,
+                    devicePixelRatio: dpr // 像素
+                });
+                canvas.setChart(this.chartMain);
+
+                this.chartMain.showLoading({
+                    text: 'loading'
+                });
+
+                this.data.chartDataMainOption = this.data.ensoData["data"][this.data.month];
+                //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
+                this.chartMain.hideLoading();
+                //将图表【样式配置】和【数据配置】合并成【最终配置】
+                let option = mergeDeep(this.data.chartDataMainOption, this.data.commomOption);
+                //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
+                option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
+                option.series[0].name='EnsembleForecast';
+                // this.setData({chartStyle:"transform: rotate(90deg)"});
+                this.chartMain.setOption(option);
 
                 return this.chartMain;
             })
