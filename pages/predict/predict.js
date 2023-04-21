@@ -178,7 +178,7 @@ Component({
                 });
 
                 wx.request({
-                    url: app.globalData.baseUrl+'/enso/mainPage',
+                    url: app.globalData.baseUrl+'/enso/mainPage_new',
                     success: (res) => {
 
                         this.setData({start: res.data["availableMonth"][0]})
