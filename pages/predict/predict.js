@@ -65,10 +65,10 @@ Component({
         cur: {},
         //PC使用canvas 2d会导致渲染层级错误，但移动端正常
         isPC: wx.getSystemInfoSync().platform == "devtools",
-        start: '2023-02',
-        end: '2023-02',
+        start: '',
+        end: '',
         mode: '',
-        month: '2023-02',
+        month: '',
         second: '10:00:00',
         minute: '23:59',
         //预测 主图
