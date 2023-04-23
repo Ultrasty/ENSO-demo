@@ -16,7 +16,11 @@ Component({
         this.initChartMain();
     },
     data: {
-
+        resultDescription: "正在加载...",
+        resultDescriptionMap: {
+            "2023-02": "于2023年冬季发展为厄尔尼诺事件， Niño 3.4指数峰值为1.06，随后逐渐减弱，于24年4月份过渡为中性状态。",
+            "2023-03": "于2023年冬季发展为厄尔尼诺事件， Niño 3.4指数峰值为0.91，随后逐渐减弱，于24年4月份过渡为中性状态。"
+        },
         chartStyle: "",
         commomOption: {
 
@@ -42,7 +46,7 @@ Component({
                 }
             },
             legend: {
-                data: ['EnsembleForecast','ENSO-Cross', 'ENSO-ASC', 'ENSO-GTC', 'ENSO-MC'],
+                data: ['EnsembleForecast', 'ENSO-Cross', 'ENSO-ASC', 'ENSO-GTC', 'ENSO-MC'],
                 bottom: 0,
                 textStyle: {
                     rich: {
@@ -178,14 +182,24 @@ Component({
                 });
 
                 wx.request({
-                    url: app.globalData.baseUrl+'/enso/mainPage_new',
+                    url: app.globalData.baseUrl + '/enso/mainPage_new',
                     success: (res) => {
 
-                        this.setData({start: res.data["availableMonth"][0]})
-                        this.setData({end: res.data["availableMonth"][res.data["availableMonth"].length - 1]})
-                        this.setData({month: res.data["availableMonth"][res.data["availableMonth"].length - 1]})
+                        // 设置图表数据
 
-                        this.setData({ensoData:res.data})
+                        this.setData({
+                            start: res.data["availableMonth"][0]
+                        })
+                        this.setData({
+                            end: res.data["availableMonth"][res.data["availableMonth"].length - 1]
+                        })
+                        this.setData({
+                            month: res.data["availableMonth"][res.data["availableMonth"].length - 1]
+                        })
+
+                        this.setData({
+                            ensoData: res.data
+                        })
                         this.data.chartDataMainOption = res.data["data"][this.data.end];
                         //重新初始化图表即可，初始化函数里已经有获取当前month的方法了
                         this.chartMain.hideLoading();
@@ -193,9 +207,16 @@ Component({
                         let option = mergeDeep(this.data.chartDataMainOption, this.data.commomOption);
                         //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                         option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
-                        option.series[0].name='EnsembleForecast';
+                        option.series[0].name = 'EnsembleForecast';
                         // this.setData({chartStyle:"transform: rotate(90deg)"});
                         this.chartMain.setOption(option);
+
+
+                        // 设置描述文案
+                        this.setData({
+                            resultDescription: this.data.resultDescriptionMap[this.data.month]
+                        })
+
                     }
                 })
 
@@ -224,9 +245,15 @@ Component({
                 let option = mergeDeep(this.data.chartDataMainOption, this.data.commomOption);
                 //获取当前month，设置option，getCurrentPages()[0]获得Page()或Component()里的响应式数据
                 option.title.text = 'Niño 3.4 Forecast Results ' + this.data.month;
-                option.series[0].name='EnsembleForecast';
+                option.series[0].name = 'EnsembleForecast';
                 // this.setData({chartStyle:"transform: rotate(90deg)"});
                 this.chartMain.setOption(option);
+
+                // 设置描述文案
+                this.setData({
+                    resultDescription: this.data.resultDescriptionMap[this.data.month]
+                })
+
 
                 return this.chartMain;
             })
@@ -255,7 +282,7 @@ Component({
                         }
                     }
                 };
-                option.series[0].name='EnsembleForecast';
+                option.series[0].name = 'EnsembleForecast';
                 this.setData({
                     chartStyle: "transform: rotate(90deg) translateX(-50vw) translateY(-50vw);transform-origin:left;"
                 });
