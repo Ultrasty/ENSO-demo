@@ -6,7 +6,7 @@
             <view class="container">
                 <ec-canvas id="chart1" ec="{{ ec1 }}"></ec-canvas>
             </view>
-            <view class="explanation"></view>
+            <view class="explanation">{{ description1 }}</view>
         </t-collapse-panel>
 
         <t-collapse-panel class="wrapper" header="预报结果误差柱状图" value="{{1}}" expandIcon>
@@ -17,14 +17,14 @@
             <view class="container">
                 <ec-canvas id="chart2" ec="{{ ec2 }}"></ec-canvas>
             </view>
-            <view class="explanation"></view>
+            <view class="explanation">{{ description2 }}</view>
         </t-collapse-panel>
 
         <t-collapse-panel class="wrapper" header="误差分析箱型图" value="{{2}}" expandIcon>
             <view class="container">
                 <ec-canvas id="chart3" ec="{{ ec3 }}"></ec-canvas>
             </view>
-            <view class="explanation"></view>
+            <view class="explanation">{{ description3 }}</view>
         </t-collapse-panel>
 
 
@@ -32,7 +32,7 @@
             <view class="container">
                 <ec-canvas id="chart4" ec="{{ ec4 }}"></ec-canvas>
             </view>
-            <view class="explanation"></view>
+            <view class="explanation">{{ description4 }}</view>
         </t-collapse-panel>
 
     </t-collapse>

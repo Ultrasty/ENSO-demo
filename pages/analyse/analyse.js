@@ -24,6 +24,19 @@ Component({
         this.initChart2();
         this.initChart3();
         this.initChart4();
+        let that=this;
+        wx.request({
+            url: app.globalData.baseUrl+'/enso/analyzePage',
+            success(res) {
+                that.setData({"descriptionMap":res.data})
+                that.setData({
+                    "description1":that.data.descriptionMap["chart1"],
+                    "description2":that.data.descriptionMap["chart2"],
+                    "description3":that.data.descriptionMap["chart3"],
+                    "description4":that.data.descriptionMap["chart4"],
+                })
+            }
+        })
     },
     data: {
         chart2selection:{
