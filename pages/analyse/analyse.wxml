@@ -6,7 +6,7 @@
             <view class="container">
                 <ec-canvas id="chart1" ec="{{ ec1 }}"></ec-canvas>
             </view>
-            <view class="explanation">此处为预测结果汇总折线图。除22年10月-23年1月外，其他月份的预测结果与官方记录差异不大。预测误差较大可能与近年来连续冷（拉尼娜）事件快结束时状态不稳定有关。</view>
+            <view class="explanation"></view>
         </t-collapse-panel>
 
         <t-collapse-panel class="wrapper" header="预报结果误差柱状图" value="{{1}}" expandIcon>
@@ -17,14 +17,14 @@
             <view class="container">
                 <ec-canvas id="chart2" ec="{{ ec2 }}"></ec-canvas>
             </view>
-            <view class="explanation">此处的12副图分别为从2022年2月~2023年1月起报的预测结果、官方记录结果及二者绝对差值图（柱状）</view>
+            <view class="explanation"></view>
         </t-collapse-panel>
 
         <t-collapse-panel class="wrapper" header="误差分析箱型图" value="{{2}}" expandIcon>
             <view class="container">
                 <ec-canvas id="chart3" ec="{{ ec3 }}"></ec-canvas>
             </view>
-            <view class="explanation">此处为不同起报月份的绝对差值分布箱型图。大多数情况下绝对差值较小，除8月起报以外，8月起报结果在今年1月份预测误差较大。</view>
+            <view class="explanation"></view>
         </t-collapse-panel>
 
 
@@ -32,7 +32,7 @@
             <view class="container">
                 <ec-canvas id="chart4" ec="{{ ec4 }}"></ec-canvas>
             </view>
-            <view class="explanation">此处为不同起报月份的相关性技巧折线图。各相关性系数技巧均超过0.6，平均达到0.75以上。</view>
+            <view class="explanation"></view>
         </t-collapse-panel>
 
     </t-collapse>

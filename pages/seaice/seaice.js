@@ -16,6 +16,7 @@ Component({
         this.initChartMain();
     },
     data: {
+        description:"",
         cityText: '',
         cityValue: [],
         citys: [
@@ -235,6 +236,12 @@ Component({
                     }
                 })
 
+                wx.request({
+                    url: app.globalData.baseUrl + '/ice/description?year=' + this.data.year,
+                    success: (res) => {
+                        this.setData({"description":res.data});
+                    }
+                })
 
                 return this.chartMain;
             })

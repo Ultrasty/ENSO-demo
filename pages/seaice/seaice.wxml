@@ -37,6 +37,6 @@
 
     <view class="subtitle">结果描述：</view>
 
-    <view class="explanation">2023年9月SIE极小值预测为4.4133，相较于2022年观测偏低，2023年海冰范围预计将比2022年整体偏少。</view>
+    <view class="explanation">{{description}}</view>
 
 </view>
