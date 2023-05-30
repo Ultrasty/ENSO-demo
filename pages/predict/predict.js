@@ -17,10 +17,6 @@ Component({
     },
     data: {
         resultDescription: "正在加载...",
-        resultDescriptionMap: {
-            "2023-02": "于2023年冬季发展为厄尔尼诺事件， Niño 3.4指数峰值为1.06，随后逐渐减弱，于24年4月份过渡为中性状态。",
-            "2023-03": "于2023年冬季发展为厄尔尼诺事件， Niño 3.4指数峰值为0.91，随后逐渐减弱，于24年4月份过渡为中性状态。"
-        },
         chartStyle: "",
         commomOption: {
 
@@ -211,8 +207,12 @@ Component({
                         // this.setData({chartStyle:"transform: rotate(90deg)"});
                         this.chartMain.setOption(option);
 
-
+                        console.log(res.data)
                         // 设置描述文案
+                        this.setData({
+                            resultDescriptionMap: res.data["description"]
+                        })
+
                         this.setData({
                             resultDescription: this.data.resultDescriptionMap[this.data.month]
                         })
