@@ -26,7 +26,7 @@ Component({
         this.initChart4();
         let that=this;
         wx.request({
-            url: app.globalData.baseUrl+'/enso/analyzePage',
+            url: app.globalData.baseUrl+'/enso/analyzePage/desc',
             success(res) {
                 that.setData({"descriptionMap":res.data})
                 that.setData({
