@@ -14,6 +14,13 @@ Component({
         this.ecComponentMain = this.selectComponent('#chartMain');
         this.ecComponentRotated = this.selectComponent('#chartRotated');
         this.initChartMain();
+        let that = this;
+        wx.request({
+            url: app.globalData.baseUrl + '/ice/availableyear',
+            success: (res) => {
+                that.setData(res.data);
+            }
+        })
     },
     data: {
         description:"",
