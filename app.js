@@ -1,25 +1,13 @@
 // app.js
 
 //是否使用mock数据
-let debug = true;
+let debug = false;
 
 if (debug) {
     var Mock = require("./utils/mock.mp.js");
     // var Mock = require("./utils/WxMock.js"); 
     Mock.setup({
         timeout: '0-3000'
-    })
-
-    Mock.mock('https://www.tjensoprediction.com:8888/ice/availableyear', {
-        citys: [{
-                label: '2023',
-                value: '2023'
-            },
-            {
-                label: '2024',
-                value: '2024'
-            }
-        ]
     })
 }
 
